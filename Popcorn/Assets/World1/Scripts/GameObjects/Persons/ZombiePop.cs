@@ -100,7 +100,7 @@ namespace Popcorn.GameObjects.Persons
 
             position.x += dir;
 
-            RaycastHit2D hit = Physics2D.Raycast(position, direction, 0.05f);
+            RaycastHit2D hit = Physics2D.Raycast(position, direction, 0.08f);
 
             if (hit.collider != null && hit.collider.tag != PersonsTags.Player.ToString()) return true;
             return false;
@@ -131,8 +131,8 @@ namespace Popcorn.GameObjects.Persons
         }
 
         protected override void WeakPointHitted()
-        {
-            if (isAlive == true)
+        {            
+            if (isAlive)
             {
                 isAlive = false;
                 KillAnimation();

@@ -154,7 +154,7 @@ namespace Popcorn.GameObjects.Elementies
 
         bool IsGameFinished()
         {
-            if (player.isAlive == false || endPoint.wasReachedTheEnd == true)
+            if (!player.isAlive || endPoint.wasReachedTheEnd)
             {
                 GameState = GameStates.Ended;
                 return true;

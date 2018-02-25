@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using Popcorn.ObjectsServices;
 using Popcorn.GameObjects.Helpers;
+using Popcorn.GameObjects.Elementies;
 using Errors = Popcorn.Metadados.Strings.Errors;
 using PersonsTags = Popcorn.Metadados.Tags.Persons;
 using ErrorsAuxs = Popcorn.Metadados.Strings.ErrorsAuxs;
 using CombineCharacters = Popcorn.Metadados.Strings.CombineCharacters;
+using GameStates = Popcorn.GameObjects.Elementies.GameBehavior.GameStates;
 
 namespace Popcorn.Bases
 {
@@ -39,8 +41,9 @@ namespace Popcorn.Bases
 
         protected virtual void Update()
         {
-            if (weakPoint.isColliding)
-            {
+            
+            if (weakPoint.isColliding && GameBehavior.GameState == GameStates.Runing)
+            {                
                 WeakPointHitted();
             }
         }

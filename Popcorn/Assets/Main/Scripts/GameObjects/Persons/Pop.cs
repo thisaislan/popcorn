@@ -23,7 +23,7 @@ namespace Popcorn.GameObjects.Persons
         [SerializeField]
         float velocity = 4f;
         [SerializeField]
-        float jumpForce = 720f;
+        float jumpForce = 900f;
         [SerializeField]
         float hitForce = 300f;
 
@@ -55,16 +55,19 @@ namespace Popcorn.GameObjects.Persons
             }
             CleanVelocityX();
 
-            if (Input.GetKey(KeyCode.A) == true && leftColliderHelper.isColliding == false)
+            if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) &&
+                !leftColliderHelper.isColliding)
             {
                 Move(Transforms.Direction.LEFT);
             }
-            else if (Input.GetKey(KeyCode.D) == true && rightColliderHelper.isColliding == false)
+            else if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) &&
+                !rightColliderHelper.isColliding)
             {
                 Move(Transforms.Direction.RIGHT);
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) == true && isJumping == false)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) &&
+             !isJumping)
             {
                 Jump(jumpForce);
             }
@@ -100,7 +103,7 @@ namespace Popcorn.GameObjects.Persons
 
         bool CheckIfDontCanMove()
         {
-            return isAlive == false ||
+            return !isAlive ||
                 GameBehavior.GameState == GameStates.Paused ||
                 animator.GetBool(AnimationParameters.Hit.ToString());
         }
@@ -130,7 +133,7 @@ namespace Popcorn.GameObjects.Persons
                 }
                 else
                 {
-                    Jump(jumpForce - 30);
+                    Jump(jumpForce - 50);
                 }
 
             }
@@ -176,7 +179,7 @@ namespace Popcorn.GameObjects.Persons
 
         void Kill(float forceToUp)
         {
-            if (isAlive == true)
+            if (isAlive)
             {
                 rb2D.velocity = Vector2.zero;
                 rb2D.gravityScale = Transforms.Gravity.WITHOUT;
@@ -211,7 +214,7 @@ namespace Popcorn.GameObjects.Persons
                 animator.SetBool(AnimationParameters.Hit.ToString(), true);
                 vectorHit.x = MathExt.GetInvertValue(lastDir) * hitForce;
 
-                if (isJumping == true)
+                if (isJumping)
                 {
                     vectorHit.x = MathExt.GetPercent(value: vectorHit.x, percent: 70);
                     vectorHit.y = MathExt.GetPercent(value: hitForce, percent: 50);

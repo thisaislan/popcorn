@@ -13,7 +13,7 @@
         public class Gravity
         {
             public const float WITHOUT = 0f;
-            public const float NORMAL = 1f;
+            public const float NORMAL = 1.5f;
             public const float HARD = 2f;
         }
 

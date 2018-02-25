@@ -183,7 +183,7 @@ Rigidbody2D:
   m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -582,7 +582,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeToRestatIdle: 4.5
   velocity: 4
-  jumpForce: 720
+  jumpForce: 900
   hitForce: 300
 --- !u!212 &212123485353568636
 SpriteRenderer:

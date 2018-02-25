@@ -9,7 +9,6 @@ namespace Popcorn.GameObjects.Helpers
     {
         [HideInInspector]
         public bool isColliding { get; private set; }
-
         private void Awake()
         {
             isColliding = false;
@@ -22,7 +21,7 @@ namespace Popcorn.GameObjects.Helpers
 
         private void OnCollisionExit2D(Collision2D coll)
         {
-            if (coll.gameObject.CompareTag(Tags.Persons.Player.ToString()) == true) isColliding = false;
+            if (coll.gameObject.CompareTag(Tags.Persons.Player.ToString()) == true) isColliding = false;            
         }
 
     }
