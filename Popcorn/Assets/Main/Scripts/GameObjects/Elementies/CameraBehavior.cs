@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using Popcorn.ObjectsServices;
-using Errors = Popcorn.Metadados.Strings.Errors;
-using PersonsTags = Popcorn.Metadados.Tags.Persons;
-using ElementiesTags = Popcorn.Metadados.Tags.Elementies;
+using Errors = Popcorn.Metadatas.Strings.Errors;
+using PersonsTags = Popcorn.Metadatas.Tags.Persons;
+using ElementiesTags = Popcorn.Metadatas.Tags.Elementies;
 
 namespace Popcorn.GameObjects.Elementies
 {
@@ -12,15 +12,15 @@ namespace Popcorn.GameObjects.Elementies
     {
 
         [SerializeField]
-        Vector2 offset = new Vector2(0, 0);
+        Vector2 Offset = new Vector2(0, 0);
         [SerializeField]
-        Vector2 lerpAmount = new Vector2(0.05f, 0.05f);
+        Vector2 LerpAmount = new Vector2(0.05f, 0.05f);
 
-        Transform target;
-        GameObject leftLimitView;
-        GameObject rightLimitView;
-        GameObject upLimitView;
-        GameObject bottomLimitView;
+        Transform Target;
+        GameObject LeftLimitView;
+        GameObject RightLimitView;
+        GameObject UpLimitView;
+        GameObject BottomLimitView;
 
         void Awake()
         {
@@ -31,73 +31,91 @@ namespace Popcorn.GameObjects.Elementies
 
         void FindTarget()
         {
-            target = Getter.ObjectWithTag(
+            Target = Getter.ObjectWithTag(
                 caller: this,
                 tag: PersonsTags.Player.ToString(),
-                errorOnNotFound: Errors.PLAYER_NOT_FOUND
+                errorOnNotFound: Errors.PlayerNotFound
                 ).transform;
 
             Vector3 pos = this.transform.position;
-            pos.x = target.position.x + offset.x + 3;
-            pos.y = target.position.y + offset.y;
+            pos.x = Target.position.x + Offset.x + 3;
+            pos.y = Target.position.y + Offset.y;
             this.transform.position = pos;
         }
 
         void FindLimites()
         {
 
-            leftLimitView = Getter.SingleInstanceObjectWithTag(caller: this,
+            LeftLimitView = Getter.SingleInstanceObjectWithTag(caller: this,
                 tag: ElementiesTags.LeftLimitView.ToString(),
-                errorOnNotFound: Errors.ANY_LIMIT_VIEW_NOT_FOUND,
-                multiplesInstance: Errors.ANY_LIMIT_VIEW_IS_MULTIPLIED);
+                errorOnNotFound: Errors.AnyLimitViewNotFound,
+                multiplesInstance: Errors.AnyLimitViewIsMultiplied);
 
-            rightLimitView = Getter.SingleInstanceObjectWithTag(caller: this,
+            RightLimitView = Getter.SingleInstanceObjectWithTag(caller: this,
                 tag: ElementiesTags.RightLimitView.ToString(),
-                errorOnNotFound: Errors.ANY_LIMIT_VIEW_NOT_FOUND,
-                multiplesInstance: Errors.ANY_LIMIT_VIEW_IS_MULTIPLIED);
+                errorOnNotFound: Errors.AnyLimitViewNotFound,
+                multiplesInstance: Errors.AnyLimitViewIsMultiplied);
 
-            upLimitView = Getter.SingleInstanceObjectWithTag(caller: this,
+            UpLimitView = Getter.SingleInstanceObjectWithTag(caller: this,
                 tag: ElementiesTags.UpLimitView.ToString(),
-                errorOnNotFound: Errors.ANY_LIMIT_VIEW_NOT_FOUND,
-                multiplesInstance: Errors.ANY_LIMIT_VIEW_IS_MULTIPLIED);
+                errorOnNotFound: Errors.AnyLimitViewNotFound,
+                multiplesInstance: Errors.AnyLimitViewIsMultiplied);
 
-            bottomLimitView = Getter.SingleInstanceObjectWithTag(caller: this,
+            BottomLimitView = Getter.SingleInstanceObjectWithTag(caller: this,
                 tag: ElementiesTags.BottomLimitView.ToString(),
-                errorOnNotFound: Errors.ANY_LIMIT_VIEW_NOT_FOUND,
-                multiplesInstance: Errors.ANY_LIMIT_VIEW_IS_MULTIPLIED);
+                errorOnNotFound: Errors.AnyLimitViewNotFound,
+                multiplesInstance: Errors.AnyLimitViewIsMultiplied);
         }
 
         void CheckICrossLimits()
         {
-            Checker.CruzedHorizontalPosition(leftGameObject: leftLimitView, rightGameObject: rightLimitView, error: Errors.CRUZED_HORIZONTAL_LIMITS);
-            Checker.CruzedVerticalPosition(upGameObject: upLimitView, bottomGameObject: bottomLimitView, error: Errors.CRUZED_VERTICAL_LIMITS);
+            Checker.CruzedHorizontalPosition(leftGameObject: LeftLimitView, rightGameObject: RightLimitView, error: Errors.CruzedHorizontalLimits);
+            Checker.CruzedVerticalPosition(upGameObject: UpLimitView, bottomGameObject: BottomLimitView, error: Errors.CruzedVerticalLimits);
         }
 
         void Update()
         {
-            if (target == null) return;
-            else Follow();
+            if (Target == null)
+            {
+                return;
+            }
+            else
+            {
+                Follow();
+            }
         }
 
         void Follow()
         {
-            Vector3 pos = this.transform.position;
+            Vector3 thisPosition = this.transform.position;
 
-            if (target.position.x <= leftLimitView.transform.position.x)
-                pos.x = Mathf.Lerp(pos.x, leftLimitView.transform.position.x + offset.x, lerpAmount.x);
-            else if (target.position.x >= rightLimitView.transform.position.x)
-                pos.x = Mathf.Lerp(pos.x, rightLimitView.transform.position.x + offset.x, lerpAmount.x);
+            if (Target.position.x <= LeftLimitView.transform.position.x)
+            {
+                thisPosition.x = Mathf.Lerp(thisPosition.x, LeftLimitView.transform.position.x + Offset.x, LerpAmount.x);
+            }
+            else if (Target.position.x >= RightLimitView.transform.position.x)
+            {
+                thisPosition.x = Mathf.Lerp(thisPosition.x, RightLimitView.transform.position.x + Offset.x, LerpAmount.x);
+            }
             else
-                pos.x = Mathf.Lerp(pos.x, target.position.x + offset.x, lerpAmount.x);
+            {
+                thisPosition.x = Mathf.Lerp(thisPosition.x, Target.position.x + Offset.x, LerpAmount.x);
+            }
 
-            if (target.position.y <= bottomLimitView.transform.position.y)
-                pos.y = Mathf.Lerp(pos.y, bottomLimitView.transform.position.y + offset.y, lerpAmount.y);
-            else if (target.position.y >= upLimitView.transform.position.y)
-                pos.y = Mathf.Lerp(pos.y, upLimitView.transform.position.y + offset.y, lerpAmount.y);
+            if (Target.position.y <= BottomLimitView.transform.position.y)
+            {
+                thisPosition.y = Mathf.Lerp(thisPosition.y, BottomLimitView.transform.position.y + Offset.y, LerpAmount.y);
+            }
+            else if (Target.position.y >= UpLimitView.transform.position.y)
+            {
+                thisPosition.y = Mathf.Lerp(thisPosition.y, UpLimitView.transform.position.y + Offset.y, LerpAmount.y);
+            }
             else
-                pos.y = Mathf.Lerp(pos.y, target.position.y + offset.y, lerpAmount.y);
+            {
+                thisPosition.y = Mathf.Lerp(thisPosition.y, Target.position.y + Offset.y, LerpAmount.y);
+            }
 
-            this.transform.position = pos;
+            this.transform.position = thisPosition;
         }
 
     }

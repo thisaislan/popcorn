@@ -10,25 +10,25 @@ namespace Popcorn.Bases
     public class PersonBase : MonoBehaviour
     {
 
-        protected Rigidbody2D rb2D;
-        protected Animator animator;
-        protected SpriteRenderer spriteR;
+        protected Rigidbody2D ThisRigidbody2D;
+        protected Animator ThisAnimator;
+        protected SpriteRenderer ThisSpriteRenderer;
 
         [HideInInspector]
-        public bool isAlive { get; protected set; }
+        public bool IsAlive { get; protected set; }
 
         protected virtual void Awake()
         {
-            isAlive = true;
+            IsAlive = true;
 
             GetComponents();
         }
 
         void GetComponents()
         {
-            rb2D = (Rigidbody2D)Getter.Component(this, gameObject, typeof(Rigidbody2D));
-            animator = (Animator)Getter.Component(this, gameObject, typeof(Animator));
-            spriteR = (SpriteRenderer)Getter.ComponentInChild(this, gameObject, typeof(SpriteRenderer), 0);
+            ThisRigidbody2D = (Rigidbody2D)Getter.Component(this, gameObject, typeof(Rigidbody2D));
+            ThisAnimator = (Animator)Getter.Component(this, gameObject, typeof(Animator));
+            ThisSpriteRenderer = (SpriteRenderer)Getter.ComponentInChild(this, gameObject, typeof(SpriteRenderer), 0);
         }
 
     }

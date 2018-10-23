@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using Popcorn.Bases;
 using Popcorn.Managers;
-using Popcorn.Metadados;
+using Popcorn.Metadatas;
 using Popcorn.ObjectsServices;
 using Popcorn.ObjectsModifiers;
 using Popcorn.GameObjects.Elementies;
-using PersonsTags = Popcorn.Metadados.Tags.Persons;
+using PersonsTags = Popcorn.Metadatas.Tags.Persons;
 using GameStates = Popcorn.GameObjects.Elementies.GameBehavior.GameStates;
 
 namespace Popcorn.GameObjects.Persons
@@ -18,76 +18,88 @@ namespace Popcorn.GameObjects.Persons
         enum AnimationParameters { WalkTrigger };
 
         [SerializeField]
-        float velocity = 1.2f;
+        float Velocity = 1.2f;
         [SerializeField]
-        bool isWalking = false;
+        bool IsWalking = false;
         [SerializeField]
-        bool startPostionToLeft = true;
+        bool StartPostionToLeft = true;
         [SerializeField]
-        float timeToWalk = 1f;
+        float TimeToWalk = 1f;
 
-        float dir = Transforms.Direction.RIGHT;
-        float walkClock = 0;
+        float Direction = Transforms.Direction.Right;
+        float WalkClock = 0;
 
-        Move move = new Move();
+        Move Move = new Move();
 
-        AudioSource deathAudioSource;
+        AudioSource DeathAudioSource;
 
         override protected void Awake()
         {
             base.Awake();
-            deathAudioSource = (AudioSource)Getter.ComponentInChild(this, gameObject, typeof(AudioSource), 0);
+            DeathAudioSource = (AudioSource)Getter.ComponentInChild(this, gameObject, typeof(AudioSource), 0);
         }
 
         void Start()
         {
-            if (startPostionToLeft)
+            if (StartPostionToLeft)
             {
-                dir = Transforms.Direction.LEFT;
+                Direction = Transforms.Direction.Left;
             }
             else
             {
-                float scaleX = rb2D.transform.localScale.x;
+                float scaleX = ThisRigidbody2D.transform.localScale.x;
 
-                rb2D.transform.localScale = new Vector3(-scaleX,
-                    Transforms.Scale.NORMAL,
-                    Transforms.Scale.NORMAL);
+                ThisRigidbody2D.transform.localScale = new Vector3(-scaleX,
+                    Transforms.Scale.Normal,
+                    Transforms.Scale.Normal);
             }
         }
 
         void FixedUpdate()
         {
-            walkClock += Time.deltaTime;
+            WalkClock += Time.deltaTime;
         }
 
         protected override void Update()
         {
             base.Update();
 
-            if (GameBehavior.GameState != GameStates.Runing || !isAlive)
+            if (GameBehavior.GameState != GameStates.Runing || !IsAlive)
             {
-                if (animator.speed != 0) animator.speed = 0;
-                if (GameBehavior.GameState == GameStates.Runing) rb2D.transform.Rotate(Vector3.forward * 2 * dir);
+                if (ThisAnimator.speed != 0)
+                {
+                    ThisAnimator.speed = 0;
+                }
+                if (GameBehavior.GameState == GameStates.Runing)
+                {
+                    ThisRigidbody2D.transform.Rotate(Vector3.forward * 2 * Direction);
+                }
                 return;
             }
 
-            if (isWalking) Walk();
+            if (IsWalking)
+            {
+                Walk();
+            }
         }
 
         void Walk()
         {
-            if (walkClock >= timeToWalk)
+            if (WalkClock >= TimeToWalk)
             {
-                move.Execute(rb2D, velocity * dir);
-                animator.SetTrigger(AnimationParameters.WalkTrigger.ToString());
+                Move.Execute(ThisRigidbody2D, Velocity * Direction);
+                ThisAnimator.SetTrigger(AnimationParameters.WalkTrigger.ToString());
                 CheckedIfNeedIversionOfPosition();
-                walkClock = 0;
+                WalkClock = 0;
             }
         }
 
         private void CheckedIfNeedIversionOfPosition()
         {
-            if (HasHoleAhead() || HasObstacleAhead()) InvertionOfDirection();
+            if (HasHoleAhead() || HasObstacleAhead())
+            {
+                InvertionOfDirection();
+            }
         }
 
         bool HasObstacleAhead()
@@ -95,60 +107,78 @@ namespace Popcorn.GameObjects.Persons
             Vector2 direction;
             Vector2 position = transform.position;
 
-            if (dir == Transforms.Direction.LEFT) direction = Vector2.left;
-            else direction = Vector2.right;
+            if (Direction == Transforms.Direction.Left)
+            {
+                direction = Vector2.left;
+            }
+            else
+            {
+                direction = Vector2.right;
+            }
 
-            position.x += dir;
+            position.x += Direction;
 
             RaycastHit2D hit = Physics2D.Raycast(position, direction, 0.08f);
 
-            if (hit.collider != null && hit.collider.tag != PersonsTags.Player.ToString()) return true;
+            if (hit.collider != null && hit.collider.tag != PersonsTags.Player.ToString())
+            {
+                return true;
+            }
             return false;
         }
 
         bool HasHoleAhead()
         {
             Vector2 position = transform.position;
-            position.x += dir;
+            position.x += Direction;
 
             RaycastHit2D hit = Physics2D.Raycast(position, Vector2.down, 1);
 
-            if (hit.collider == null) return true;
+            if (hit.collider == null)
+            {
+                return true;
+            }
             return false;
         }
 
         void InvertionOfDirection()
         {
 
-            if (dir == Transforms.Direction.RIGHT) dir = Transforms.Direction.LEFT;
-            else dir = Transforms.Direction.RIGHT;
+            if (Direction == Transforms.Direction.Right)
+            {
+                Direction = Transforms.Direction.Left;
+            }
+            else
+            {
+                Direction = Transforms.Direction.Right;
+            }
 
-            float scaleX = rb2D.transform.localScale.x;
+            float scaleX = ThisRigidbody2D.transform.localScale.x;
 
-            rb2D.transform.localScale = new Vector3(-scaleX,
-                Transforms.Scale.NORMAL,
-                Transforms.Scale.NORMAL);
+            ThisRigidbody2D.transform.localScale = new Vector3(-scaleX,
+                Transforms.Scale.Normal,
+                Transforms.Scale.Normal);
         }
 
         protected override void WeakPointHitted()
-        {            
-            if (isAlive)
+        {
+            if (IsAlive)
             {
-                isAlive = false;
+                IsAlive = false;
                 KillAnimation();
             }
         }
 
         void KillAnimation()
         {
-            AudioManager.Instance.PlaySoundOnce(caller: this, sound: deathAudioSource);
-            animator.speed = 0;
-            rb2D.velocity = Vector2.zero;
+            AudioManager.Instance.PlaySoundOnce(caller: this, sound: DeathAudioSource);
+            ThisAnimator.speed = 0;
+            ThisRigidbody2D.velocity = Vector2.zero;
             (Getter.Component(this, gameObject, typeof(Collider2D)) as Collider2D).isTrigger = true;
             (Getter.ComponentInChild(this, gameObject, typeof(CircleCollider2D), 0) as CircleCollider2D).isTrigger = true;
-            spriteR.sortingOrder = (int)Layers.OrdersInDefaultLayer.Max;
-            rb2D.AddForce(new Vector2(0, 100));
-            rb2D.gravityScale = Transforms.Gravity.HARD;
+            ThisSpriteRenderer.sortingOrder = (int)Layers.OrdersInDefaultLayer.Max;
+            ThisRigidbody2D.AddForce(new Vector2(0, 100));
+            ThisRigidbody2D.gravityScale = Transforms.Gravity.Hard;
         }
 
     }

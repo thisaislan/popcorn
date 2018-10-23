@@ -2,10 +2,10 @@
 using Popcorn.ObjectsServices;
 using Popcorn.GameObjects.Helpers;
 using Popcorn.GameObjects.Elementies;
-using Errors = Popcorn.Metadados.Strings.Errors;
-using PersonsTags = Popcorn.Metadados.Tags.Persons;
-using ErrorsAuxs = Popcorn.Metadados.Strings.ErrorsAuxs;
-using CombineCharacters = Popcorn.Metadados.Strings.CombineCharacters;
+using Errors = Popcorn.Metadatas.Strings.Errors;
+using PersonsTags = Popcorn.Metadatas.Tags.Persons;
+using ErrorsAuxs = Popcorn.Metadatas.Strings.ErrorsAuxs;
+using CombineCharacters = Popcorn.Metadatas.Strings.CombineCharacters;
 using GameStates = Popcorn.GameObjects.Elementies.GameBehavior.GameStates;
 
 namespace Popcorn.Bases
@@ -15,7 +15,7 @@ namespace Popcorn.Bases
     public abstract class EnemyBase : PersonBase
     {
 
-        WeakPoint weakPoint;
+        WeakPoint ThisWeakPoint;
 
         protected override void Awake()
         {
@@ -25,24 +25,24 @@ namespace Popcorn.Bases
 
             Checker.Tag(gameObject: gameObject,
                 expectedTag: PersonsTags.Enemy.ToString(),
-                error: Errors.WRONG_ENEMY_TAG +
-                CombineCharacters.COMMA_SPACE +
-                ErrorsAuxs.GAME_OBJECT +
+                error: Errors.WrongEnemyTag +
+                CombineCharacters.CommaSpace +
+                ErrorsAuxs.GameObject +
                 gameObject.ToString() +
-                CombineCharacters.COMMA_SPACE +
-                ErrorsAuxs.TAG +
+                CombineCharacters.CommaSpace +
+                ErrorsAuxs.Tag +
                 gameObject.tag);
         }
 
         void GetWeakPoint()
         {
-            weakPoint = (WeakPoint)Getter.ComponentInChild(this, gameObject, typeof(WeakPoint), 0);
+            ThisWeakPoint = (WeakPoint)Getter.ComponentInChild(this, gameObject, typeof(WeakPoint), 0);
         }
 
         protected virtual void Update()
         {
             
-            if (weakPoint.isColliding && GameBehavior.GameState == GameStates.Runing)
+            if (ThisWeakPoint.IsColliding && GameBehavior.GameState == GameStates.Runing)
             {                
                 WeakPointHitted();
             }

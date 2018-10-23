@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using Errors = Popcorn.Metadados.Strings.Errors;
-using LimitSide = Popcorn.Metadados.Position.Sides;
-using ElementiesTags = Popcorn.Metadados.Tags.Elementies;
-using CombineCharacters = Popcorn.Metadados.Strings.CombineCharacters;
+using Errors = Popcorn.Metadatas.Strings.Errors;
+using LimitSide = Popcorn.Metadatas.Position.Sides;
+using ElementiesTags = Popcorn.Metadatas.Tags.Elementies;
+using CombineCharacters = Popcorn.Metadatas.Strings.CombineCharacters;
 
 namespace Popcorn.GameObjects.Elementies
 {
@@ -10,69 +10,90 @@ namespace Popcorn.GameObjects.Elementies
     {
 
         [SerializeField]
-        LimitSide limitSide;
+        LimitSide LimitSide;
         [SerializeField]
-        GameObject gameObjectRelativy;
+        GameObject GameObjectRelativy;
         [SerializeField]
-        float distance = 7;
+        float Distance = 7;
 
         void Awake()
         {
-            if (IsConfigOk()) SetPosition();
+            if (IsConfigOk())
+            {
+                SetPosition();
+            }
         }
 
         bool IsConfigOk()
         {
             string error = null;
 
-            if (this.CompareTag(ElementiesTags.RightLimitView.ToString()) == true)
+            if (this.CompareTag(ElementiesTags.RightLimitView.ToString()))
             {
-                if (limitSide != LimitSide.Right) error = Errors.ANY_LIMIT_VIEW_WITH_THE_WRONG_LIMIT_SIDE;
+                if (LimitSide != LimitSide.Right)
+                {
+                    error = Errors.AnyLimitViewWithTheWrongLimitSide;
+                }
             }
-            else if (this.CompareTag(ElementiesTags.LeftLimitView.ToString()) == true)
+            else if (this.CompareTag(ElementiesTags.LeftLimitView.ToString()))
             {
-                if (limitSide != LimitSide.Left) error = Errors.ANY_LIMIT_VIEW_WITH_THE_WRONG_LIMIT_SIDE;
+                if (LimitSide != LimitSide.Left)
+                {
+                    error = Errors.AnyLimitViewWithTheWrongLimitSide;
+                }
             }
-            else if (this.CompareTag(ElementiesTags.UpLimitView.ToString()) == true)
+            else if (this.CompareTag(ElementiesTags.UpLimitView.ToString()))
             {
-                if (limitSide != LimitSide.Up) error = Errors.ANY_LIMIT_VIEW_WITH_THE_WRONG_LIMIT_SIDE;
+                if (LimitSide != LimitSide.Up)
+                {
+                    error = Errors.AnyLimitViewWithTheWrongLimitSide;
+                }
             }
-            else if (this.CompareTag(ElementiesTags.BottomLimitView.ToString()) == true)
+            else if (this.CompareTag(ElementiesTags.BottomLimitView.ToString()))
             {
-                if (limitSide != LimitSide.Bottom) error = Errors.ANY_LIMIT_VIEW_WITH_THE_WRONG_LIMIT_SIDE;
+                if (LimitSide != LimitSide.Bottom)
+                {
+                    error = Errors.AnyLimitViewWithTheWrongLimitSide;
+                }
             }
             else
             {
-                error = Errors.ANY_LIMIT_VIEW_WITH_THE_WRONG_TAG;
+                error = Errors.AnyLimitViewWithTheWrongTag;
             }
 
-            if (error != null) throw new UnityException(error + CombineCharacters.SPACE_COLON_SPACE + this.gameObject.ToString());
-            else return true;
+            if (error != null)
+            {
+                throw new UnityException(error + CombineCharacters.SpaceColonSpace + this.gameObject.ToString());
+            }
+            else
+            {
+                return true;
+            }
         }
 
         void SetPosition()
         {
-            if (gameObjectRelativy != null)
+            if (GameObjectRelativy != null)
             {
                 Vector3 pos = this.transform.position;
 
-                switch (limitSide)
+                switch (LimitSide)
                 {
                     case LimitSide.Left:
-                        pos.x = gameObjectRelativy.transform.position.x + distance;
-                        pos.y = gameObjectRelativy.transform.position.y;
+                        pos.x = GameObjectRelativy.transform.position.x + Distance;
+                        pos.y = GameObjectRelativy.transform.position.y;
                         break;
                     case LimitSide.Right:
-                        pos.x = gameObjectRelativy.transform.position.x - distance;
-                        pos.y = gameObjectRelativy.transform.position.y;
+                        pos.x = GameObjectRelativy.transform.position.x - Distance;
+                        pos.y = GameObjectRelativy.transform.position.y;
                         break;
                     case LimitSide.Up:
-                        pos.x = gameObjectRelativy.transform.position.x;
-                        pos.y = gameObjectRelativy.transform.position.y - distance;
+                        pos.x = GameObjectRelativy.transform.position.x;
+                        pos.y = GameObjectRelativy.transform.position.y - Distance;
                         break;
                     case LimitSide.Bottom:
-                        pos.x = gameObjectRelativy.transform.position.x;
-                        pos.y = gameObjectRelativy.transform.position.y + distance;
+                        pos.x = GameObjectRelativy.transform.position.x;
+                        pos.y = GameObjectRelativy.transform.position.y + Distance;
                         break;
                 }
                 this.transform.position = pos;

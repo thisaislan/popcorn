@@ -1,8 +1,8 @@
 ﻿using System;
 using UnityEngine;
-using Errors = Popcorn.Metadados.Strings.Errors;
-using ErrorsAuxs = Popcorn.Metadados.Strings.ErrorsAuxs;
-using CombineCharacters = Popcorn.Metadados.Strings.CombineCharacters;
+using Errors = Popcorn.Metadatas.Strings.Errors;
+using ErrorsAuxs = Popcorn.Metadatas.Strings.ErrorsAuxs;
+using CombineCharacters = Popcorn.Metadatas.Strings.CombineCharacters;
 
 namespace Popcorn.ObjectsServices
 {
@@ -12,23 +12,23 @@ namespace Popcorn.ObjectsServices
 
         public static GameObject ObjectWithTag(UnityEngine.Object caller, string tag)
         {
-            return objectWithTag(tag, Errors.DEFAULT_ERROR_OBJECT_NOT_FOUND +
-                CombineCharacters.SPACE_COLON_SPACE +
-                ErrorsAuxs.CALLER +
+            return objectWithTag(tag, Errors.DefaultErrorObjectNotFound +
+                CombineCharacters.SpaceColonSpace +
+                ErrorsAuxs.Caller +
                 caller.ToString() +
-                CombineCharacters.COMMA_SPACE +
-                ErrorsAuxs.TAG +
+                CombineCharacters.CommaSpace +
+                ErrorsAuxs.Tag +
                 tag);
         }
 
         public static GameObject ObjectWithTag(UnityEngine.Object caller, string tag, string errorOnNotFound)
         {
             return objectWithTag(tag, errorOnNotFound +
-                CombineCharacters.SPACE_COLON_SPACE +
-                ErrorsAuxs.CALLER +
+                CombineCharacters.SpaceColonSpace +
+                ErrorsAuxs.Caller +
                 caller.ToString() +
-                CombineCharacters.COMMA_SPACE +
-                ErrorsAuxs.TAG +
+                CombineCharacters.CommaSpace +
+                ErrorsAuxs.Tag +
                 tag);
         }
 
@@ -36,8 +36,14 @@ namespace Popcorn.ObjectsServices
         {
             GameObject gameObject = GameObject.FindGameObjectWithTag(tag);
 
-            if (gameObject == null) throw new UnityException(errorOnNotFound);
-            else return gameObject;
+            if (gameObject == null)
+            {
+                throw new UnityException(errorOnNotFound);
+            }
+            else
+            {
+                return gameObject;
+            }
         }
 
         public static GameObject SingleInstanceObjectWithTag(UnityEngine.Object caller, string tag, string errorOnNotFound, string multiplesInstance)
@@ -47,21 +53,21 @@ namespace Popcorn.ObjectsServices
             if (gameObjects.Length == 0)
             {
                 throw new UnityException(errorOnNotFound +
-                    CombineCharacters.SPACE_COLON_SPACE +
-                    ErrorsAuxs.CALLER +
+                    CombineCharacters.SpaceColonSpace +
+                    ErrorsAuxs.Caller +
                     caller.ToString() +
-                    CombineCharacters.COMMA_SPACE +
-                    ErrorsAuxs.TAG +
+                    CombineCharacters.CommaSpace +
+                    ErrorsAuxs.Tag +
                     tag);
             }
             else if (gameObjects.Length > 1)
             {
                 throw new UnityException(multiplesInstance +
-                    CombineCharacters.SPACE_COLON_SPACE +
-                    ErrorsAuxs.CALLER +
+                    CombineCharacters.SpaceColonSpace +
+                    ErrorsAuxs.Caller +
                     caller.ToString() +
-                    CombineCharacters.COMMA_SPACE +
-                    ErrorsAuxs.TAG +
+                    CombineCharacters.CommaSpace +
+                    ErrorsAuxs.Tag +
                     tag);
             }
             else
@@ -82,15 +88,15 @@ namespace Popcorn.ObjectsServices
 
             if (component == null)
             {
-                throw new UnityException(Errors.DEFAULT_ERROR_COMPONENT_NOT_FOUND +
-                    CombineCharacters.SPACE_COLON_SPACE +
-                    ErrorsAuxs.CALLER +
+                throw new UnityException(Errors.defaultErrorComponentNotFound +
+                    CombineCharacters.SpaceColonSpace +
+                    ErrorsAuxs.Caller +
                     caller.ToString() +
-                    CombineCharacters.COMMA_SPACE +
-                    ErrorsAuxs.GAME_OBJECT +
+                    CombineCharacters.CommaSpace +
+                    ErrorsAuxs.GameObject +
                     gameObject.ToString() +
-                    CombineCharacters.COMMA_SPACE +
-                    ErrorsAuxs.TYPE +
+                    CombineCharacters.CommaSpace +
+                    ErrorsAuxs.Type +
                     type.ToString());
             }
             return component;
@@ -103,18 +109,18 @@ namespace Popcorn.ObjectsServices
 
             if (components.Length == 0)
             {
-                throw new UnityException(Errors.DEFAULT_ERROR_COMPONENT_IN_CHILD_NOT_FOUND +
-                    CombineCharacters.SPACE_COLON_SPACE +
-                    ErrorsAuxs.CALLER +
+                throw new UnityException(Errors.DefaultErrorComponentInChildNotFound +
+                    CombineCharacters.SpaceColonSpace +
+                    ErrorsAuxs.Caller +
                     caller.ToString() +
-                    CombineCharacters.COMMA_SPACE +
-                    ErrorsAuxs.GAME_OBJECT +
+                    CombineCharacters.CommaSpace +
+                    ErrorsAuxs.GameObject +
                     gameObject.ToString() +
-                    CombineCharacters.COMMA_SPACE +
-                    ErrorsAuxs.TYPE +
+                    CombineCharacters.CommaSpace +
+                    ErrorsAuxs.Type +
                     type.ToString() +
-                    CombineCharacters.COMMA_SPACE +
-                    ErrorsAuxs.POSITION +
+                    CombineCharacters.CommaSpace +
+                    ErrorsAuxs.Position +
                     position);
             }
 
@@ -124,18 +130,18 @@ namespace Popcorn.ObjectsServices
             }
             catch (Exception)
             {
-                throw new UnityException(Errors.DEFAULT_ERROR_COMPONENT_IN_CHILD_NOT_FOUND_IN_POSITION +
-                    CombineCharacters.SPACE_COLON_SPACE +
-                    ErrorsAuxs.CALLER +
+                throw new UnityException(Errors.DefaultErrorComponentInChildNotFoundInPosition +
+                    CombineCharacters.SpaceColonSpace +
+                    ErrorsAuxs.Caller +
                     caller.ToString() +
-                    CombineCharacters.COMMA_SPACE +
-                    ErrorsAuxs.GAME_OBJECT +
+                    CombineCharacters.CommaSpace +
+                    ErrorsAuxs.GameObject +
                     gameObject.ToString() +
-                    CombineCharacters.COMMA_SPACE +
-                    ErrorsAuxs.TYPE +
+                    CombineCharacters.CommaSpace +
+                    ErrorsAuxs.Type +
                     type.ToString() +
-                    CombineCharacters.COMMA_SPACE +
-                    ErrorsAuxs.POSITION +
+                    CombineCharacters.CommaSpace +
+                    ErrorsAuxs.Position +
                     position);
             }
             return component;

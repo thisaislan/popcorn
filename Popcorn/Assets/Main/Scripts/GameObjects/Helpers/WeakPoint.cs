@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Popcorn.Metadados;
+using Popcorn.Metadatas;
 
 namespace Popcorn.GameObjects.Helpers
 {
@@ -8,20 +8,26 @@ namespace Popcorn.GameObjects.Helpers
     public class WeakPoint : MonoBehaviour
     {
         [HideInInspector]
-        public bool isColliding { get; private set; }
+        public bool IsColliding { get; private set; }
         private void Awake()
         {
-            isColliding = false;
+            IsColliding = false;
         }
 
-        void OnCollisionEnter2D(Collision2D coll)
+        void OnCollisionEnter2D(Collision2D otherCollider2D)
         {
-            if (coll.gameObject.CompareTag(Tags.Persons.Player.ToString()) == true) isColliding = true;
+            if (otherCollider2D.gameObject.CompareTag(Tags.Persons.Player.ToString()))
+            {
+                IsColliding = true;
+            }
         }
 
-        private void OnCollisionExit2D(Collision2D coll)
+        private void OnCollisionExit2D(Collision2D otherCollider2D)
         {
-            if (coll.gameObject.CompareTag(Tags.Persons.Player.ToString()) == true) isColliding = false;            
+            if (otherCollider2D.gameObject.CompareTag(Tags.Persons.Player.ToString()))
+            {
+                IsColliding = false;
+            }
         }
 
     }

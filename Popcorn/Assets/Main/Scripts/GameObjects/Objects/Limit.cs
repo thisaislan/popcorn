@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using RelativyPosiotions = Popcorn.Metadados.Position.RelativyPosiotions;
+using RelativyPosiotions = Popcorn.Metadatas.Position.RelativyPosiotions;
 
 namespace Popcorn.GameObjects.Objects
 {
@@ -8,37 +8,40 @@ namespace Popcorn.GameObjects.Objects
     {
 
         [SerializeField]
-        RelativyPosiotions relativyPosiotion;
+        RelativyPosiotions RelativyPosiotion;
         [SerializeField]
-        GameObject gameObjectRelativy;
+        GameObject GameObjectRelativy;
         [SerializeField]
-        float distance = 4;
+        float Distance = 4;
 
         void Awake()
         {
-            if (gameObjectRelativy != null) SetPosition();
+            if (GameObjectRelativy != null)
+            {
+                SetPosition();
+            }
         }
 
         void SetPosition()
         {
-            Vector3 pos = this.transform.position;
+            Vector3 ThisPosition = this.transform.position;
 
-            switch (relativyPosiotion)
+            switch (RelativyPosiotion)
             {
                 case RelativyPosiotions.After:
-                    pos.x = gameObjectRelativy.transform.position.x + distance;
+                    ThisPosition.x = GameObjectRelativy.transform.position.x + Distance;
                     break;
                 case RelativyPosiotions.Before:
-                    pos.x = gameObjectRelativy.transform.position.x - distance;
+                    ThisPosition.x = GameObjectRelativy.transform.position.x - Distance;
                     break;
                 case RelativyPosiotions.Bellow:
-                    pos.y = gameObjectRelativy.transform.position.y - distance;
+                    ThisPosition.y = GameObjectRelativy.transform.position.y - Distance;
                     break;
                 case RelativyPosiotions.Above:
-                    pos.y = gameObjectRelativy.transform.position.y + distance;
+                    ThisPosition.y = GameObjectRelativy.transform.position.y + Distance;
                     break;
             }
-            this.transform.position = pos;
+            this.transform.position = ThisPosition;
         }
 
     }

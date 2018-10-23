@@ -9,27 +9,36 @@ namespace Popcorn.GameObjects.Helpers
     {
 
         [HideInInspector]
-        public Action<Collider2D> onTriggerEnterAction;
+        public Action<Collider2D> OnTriggerEnterAction;
         [HideInInspector]
-        public Action<Collider2D> onTriggerExitAction;
+        public Action<Collider2D> OnTriggerExitAction;
         [HideInInspector]
-        public Action<Collider2D> onTriggerStayAction;
+        public Action<Collider2D> OnTriggerStayAction;
         [HideInInspector]
-        public bool isActived = true;
+        public bool IsActived = true;
 
-        void OnTriggerEnter2D(Collider2D coll)
+        void OnTriggerEnter2D(Collider2D otherCollider2D)
         {
-            if (isActived && onTriggerEnterAction != null) onTriggerEnterAction(coll);
+            if (IsActived && OnTriggerEnterAction != null)
+            {
+                OnTriggerEnterAction(otherCollider2D);
+            }
         }
 
-        void OnTriggerExit2D(Collider2D coll)
+        void OnTriggerExit2D(Collider2D otherCollider2D)
         {
-            if (isActived && onTriggerExitAction != null) onTriggerExitAction(coll);
+            if (IsActived && OnTriggerExitAction != null)
+            {
+                OnTriggerExitAction(otherCollider2D);
+            }
         }
 
-        private void OnTriggerStay2D(Collider2D coll)
+        private void OnTriggerStay2D(Collider2D otherCollider2D)
         {
-            if (isActived && onTriggerStayAction != null) onTriggerStayAction(coll);
+            if (IsActived && OnTriggerStayAction != null)
+            {
+                OnTriggerStayAction(otherCollider2D);
+            }
         }
 
     }

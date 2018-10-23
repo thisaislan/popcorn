@@ -1,4 +1,4 @@
-﻿namespace Popcorn.Metadados
+﻿namespace Popcorn.Metadatas
 {
 
     public static class Times
@@ -13,9 +13,9 @@
 
         public class Waits
         {
-            public const float MINIMUM = 0.5f;
-            public const float MINIMUM_PLUS = 0.7f;
-            public const float MEDIUM = 4.5f;
+            public const float Minimun = 0.5f;
+            public const float MinimunPlus = 0.7f;
+            public const float Medium = 4.5f;
         }
 
     }

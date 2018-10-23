@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using Popcorn.ObjectsServices;
 using Popcorn.GameObjects.Helpers;
-using Errors = Popcorn.Metadados.Strings.Errors;
-using PersonsTags = Popcorn.Metadados.Tags.Persons;
-using ElementiesTags = Popcorn.Metadados.Tags.Elementies;
+using Errors = Popcorn.Metadatas.Strings.Errors;
+using PersonsTags = Popcorn.Metadatas.Tags.Persons;
+using ElementiesTags = Popcorn.Metadatas.Tags.Elementies;
 
 namespace Popcorn.Bases
 {
@@ -15,15 +15,15 @@ namespace Popcorn.Bases
 
         protected enum AnimationParameters { WinTrigger, IsJump, Velocity, IsAlive, IdleTrigger, Hit };
 
-        protected PopColliderHelper bottomColliderHelper;
-        protected PopColliderHelper rightColliderHelper;
-        protected PopColliderHelper leftColliderHelper;
+        protected PopColliderHelper BottomColliderHelper;
+        protected PopColliderHelper RightColliderHelper;
+        protected PopColliderHelper LeftColliderHelper;
 
-        protected AudioSource jumpAudioSource;
-        protected AudioSource winAudioSource;
-        protected AudioSource deathAudioSource;
+        protected AudioSource JumpAudioSource;
+        protected AudioSource WinAudioSource;
+        protected AudioSource DeathAudioSource;
 
-        protected float bottomLimit;
+        protected float BottomLimit;
 
         protected override void Awake()
         {
@@ -31,27 +31,27 @@ namespace Popcorn.Bases
             GetHelpers();
             GetAudioSources();
             SetBottomLimiteToStillAlive();
-            Checker.Tag(gameObject: gameObject, expectedTag: PersonsTags.Player.ToString(), error: Errors.WRONG_PLAYER_TAG);
+            Checker.Tag(gameObject: gameObject, expectedTag: PersonsTags.Player.ToString(), error: Errors.WrongPlayerTag);
         }
 
         void GetAudioSources()
         {
-            jumpAudioSource = (AudioSource)Getter.ComponentInChild(this, gameObject, typeof(AudioSource), 0);
-            winAudioSource = (AudioSource)Getter.ComponentInChild(this, gameObject, typeof(AudioSource), 1);
-            deathAudioSource = (AudioSource)Getter.ComponentInChild(this, gameObject, typeof(AudioSource), 2);
+            JumpAudioSource = (AudioSource)Getter.ComponentInChild(this, gameObject, typeof(AudioSource), 0);
+            WinAudioSource = (AudioSource)Getter.ComponentInChild(this, gameObject, typeof(AudioSource), 1);
+            DeathAudioSource = (AudioSource)Getter.ComponentInChild(this, gameObject, typeof(AudioSource), 2);
         }
 
         void SetBottomLimiteToStillAlive()
         {
-            bottomLimit = Getter.ObjectWithTag(this, ElementiesTags.BottomLimitView.ToString()).
+            BottomLimit = Getter.ObjectWithTag(this, ElementiesTags.BottomLimitView.ToString()).
                 transform.position.y - 7;
         }
 
         void GetHelpers()
         {
-            bottomColliderHelper = (PopColliderHelper)Getter.ComponentInChild(this, gameObject, typeof(PopColliderHelper), 0);
-            rightColliderHelper = (PopColliderHelper)Getter.ComponentInChild(this, gameObject, typeof(PopColliderHelper), 1);
-            leftColliderHelper = (PopColliderHelper)Getter.ComponentInChild(this, gameObject, typeof(PopColliderHelper), 2);
+            BottomColliderHelper = (PopColliderHelper)Getter.ComponentInChild(this, gameObject, typeof(PopColliderHelper), 0);
+            RightColliderHelper = (PopColliderHelper)Getter.ComponentInChild(this, gameObject, typeof(PopColliderHelper), 1);
+            LeftColliderHelper = (PopColliderHelper)Getter.ComponentInChild(this, gameObject, typeof(PopColliderHelper), 2);
         }
 
     }

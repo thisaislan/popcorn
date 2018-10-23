@@ -10,10 +10,10 @@ namespace Popcorn.GameObjects.Objects
     public class Phosphor : RunByTriggerBase
     {
 
-        enum AnimationParameters { isPlayerNear };
+        enum AnimationParameters { IsPlayerNear };
 
-        Animator animator;
-        ParticleSystem particleSys;
+        Animator Animator;
+        ParticleSystem ParticleSys;
 
         protected override void Awake()
         {
@@ -23,20 +23,20 @@ namespace Popcorn.GameObjects.Objects
 
         void GetComponents()
         {
-            animator = (Animator)Getter.Component(this, gameObject, typeof(Animator));
-            particleSys = (ParticleSystem)Getter.Component(this, gameObject, typeof(ParticleSystem));
+            Animator = (Animator)Getter.Component(this, gameObject, typeof(Animator));
+            ParticleSys = (ParticleSystem)Getter.Component(this, gameObject, typeof(ParticleSystem));
         }
 
         protected override void StartRun()
         {
-            animator.SetBool(AnimationParameters.isPlayerNear.ToString(), true);
-            particleSys.Play();
+            Animator.SetBool(AnimationParameters.IsPlayerNear.ToString(), true);
+            ParticleSys.Play();
         }
 
         protected override void StopRun()
         {
-            animator.SetBool(AnimationParameters.isPlayerNear.ToString(), false);
-            particleSys.Stop();
+            Animator.SetBool(AnimationParameters.IsPlayerNear.ToString(), false);
+            ParticleSys.Stop();
         }
 
     }

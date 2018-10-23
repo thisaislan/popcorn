@@ -1,4 +1,4 @@
-﻿using ScenesNames = Popcorn.Metadados.Scenes.Names;
+﻿using ScenesNames = Popcorn.Metadatas.Scenes.Names;
 
 namespace Popcorn.Core
 {

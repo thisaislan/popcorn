@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using PersonsTags = Popcorn.Metadados.Tags.Persons;
+using PersonsTags = Popcorn.Metadatas.Tags.Persons;
 
 namespace Popcorn.GameObjects.Objects
 {
@@ -11,7 +11,10 @@ namespace Popcorn.GameObjects.Objects
         {
             GameObject player = GameObject.FindGameObjectWithTag(PersonsTags.Player.ToString());
 
-            if (player != null) player.transform.position = new Vector3(this.transform.position.x + 2f, this.transform.position.y, 0);
+            if (player != null)
+            {
+                player.transform.position = new Vector3(this.transform.position.x + 2f, this.transform.position.y, 0);
+            }
         }
 
     }

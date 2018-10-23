@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using Popcorn.Bases;
-using Errors = Popcorn.Metadados.Strings.Errors;
-using ErrorsAuxs = Popcorn.Metadados.Strings.ErrorsAuxs;
-using CombineCharacters = Popcorn.Metadados.Strings.CombineCharacters;
+using Errors = Popcorn.Metadatas.Strings.Errors;
+using ErrorsAuxs = Popcorn.Metadatas.Strings.ErrorsAuxs;
+using CombineCharacters = Popcorn.Metadatas.Strings.CombineCharacters;
 
 namespace Popcorn.Managers
 {
@@ -10,20 +10,20 @@ namespace Popcorn.Managers
     public sealed class AudioManager : ManagerBase<AudioManager>
     {
 
-        private AudioSource backgroundMusic;
+        private AudioSource BackgroundMusic;
 
         public void PlayBackgroundMusic(UnityEngine.Object caller, AudioSource music)
         {
-            backgroundMusic = music;
-            PlaySource(backgroundMusic, true);
+            BackgroundMusic = music;
+            PlaySource(BackgroundMusic, true);
         }
 
         public void StopBackgroundMusic(UnityEngine.Object caller)
         {
-            if (backgroundMusic != null) backgroundMusic.Stop();
-            else throw new UnityException(Errors.ATTEMPT_STOP_DONT_INITIALIZED_BACKGROUND_MUSIC +
-               CombineCharacters.SPACE_COLON_SPACE +
-               ErrorsAuxs.CALLER +
+            if (BackgroundMusic != null) BackgroundMusic.Stop();
+            else throw new UnityException(Errors.AttemptStopDontInitializedBackgroundMusic +
+               CombineCharacters.SpaceColonSpace +
+               ErrorsAuxs.Caller +
                caller.ToString());
         }
 

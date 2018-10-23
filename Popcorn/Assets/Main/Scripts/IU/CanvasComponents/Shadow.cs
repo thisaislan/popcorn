@@ -9,23 +9,23 @@ namespace Popcorn.Canvas.Components
     {
 
         [SerializeField]
-        Text target;
+        Text Target;
         [SerializeField]
-        float shadowInX;
+        float ShadowInX;
         [SerializeField]
-        float shadowInY;
+        float ShadowInY;
 
         void Awake()
         {
             Vector3 behindPos = transform.position;
 
-            behindPos = new Vector3(target.transform.position.x + shadowInX, target.transform.position.y + shadowInY, target.transform.position.z - 1);
+            behindPos = new Vector3(Target.transform.position.x + ShadowInX, Target.transform.position.y + ShadowInY, Target.transform.position.z - 1);
             transform.position = behindPos;
         }
 
         void Update()
         {
-            ((Text)Getter.Component(this, gameObject, typeof(Text))).text = target.text;
+            ((Text)Getter.Component(this, gameObject, typeof(Text))).text = Target.text;
         }
 
     }

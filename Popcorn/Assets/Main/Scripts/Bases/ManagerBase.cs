@@ -4,17 +4,17 @@
     public abstract class ManagerBase<T> where T : ManagerBase<T>, new()
     {
 
-        private static T instance;
+        private static T ManageInstance;
 
         public static T Instance
         {
             get
             {
-                if (instance == null)
+                if (ManageInstance == null)
                 {
-                    instance = new T();
+                    ManageInstance = new T();
                 }
-                return instance;
+                return ManageInstance;
             }
         }
 

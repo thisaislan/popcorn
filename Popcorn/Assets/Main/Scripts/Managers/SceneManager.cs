@@ -1,8 +1,8 @@
 ﻿using Popcorn.Bases;
 using Popcorn.Core;
-using Popcorn.Metadados;
+using Popcorn.Metadatas;
 using UnityEngine.SceneManagement;
-using ScenesNames = Popcorn.Metadados.Scenes.Names;
+using ScenesNames = Popcorn.Metadatas.Scenes.Names;
 
 namespace Popcorn.Managers
 {

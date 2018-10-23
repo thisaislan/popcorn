@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using Popcorn.Bases;
-using Popcorn.Metadados;
+using Popcorn.Metadatas;
 
 namespace Popcorn.GameObjects.Helpers
 {
@@ -9,44 +9,44 @@ namespace Popcorn.GameObjects.Helpers
     {
 
         [HideInInspector]
-        public bool isColliding { get; private set; }
+        public bool IsColliding { get; private set; }
 
         protected override void Awake()
         {
             base.Awake();
-            isColliding = false;
+            IsColliding = false;
         }
 
-        void OnTriggerEnter2D(Collider2D coll)
+        void OnTriggerEnter2D(Collider2D otherCollider2D)
         {
-            if (coll.CompareTag(Tags.Surfaces.Platform.ToString()) == true ||
-                coll.CompareTag(Tags.Helpers.WeakPoint.ToString()) == true ||
-                coll.CompareTag(Tags.Elementies.Limit.ToString()) == true ||
-                coll.CompareTag(Tags.Objects.Object.ToString()) == true)
+            if (otherCollider2D.CompareTag(Tags.Surfaces.Platform.ToString()) ||
+                otherCollider2D.CompareTag(Tags.Helpers.WeakPoint.ToString()) ||
+                otherCollider2D.CompareTag(Tags.Elementies.Limit.ToString()) ||
+                otherCollider2D.CompareTag(Tags.Objects.Object.ToString()))
             {
-                isColliding = true;
+                IsColliding = true;
             }
         }
 
-        private void OnTriggerStay2D(Collider2D coll)
+        private void OnTriggerStay2D(Collider2D otherCollider2D)
         {
-            if (coll.CompareTag(Tags.Surfaces.Platform.ToString()) == true ||
-                coll.CompareTag(Tags.Helpers.WeakPoint.ToString()) == true ||
-                coll.CompareTag(Tags.Elementies.Limit.ToString()) == true ||
-                coll.CompareTag(Tags.Objects.Object.ToString()) == true)
+            if (otherCollider2D.CompareTag(Tags.Surfaces.Platform.ToString()) ||
+                otherCollider2D.CompareTag(Tags.Helpers.WeakPoint.ToString()) ||
+                otherCollider2D.CompareTag(Tags.Elementies.Limit.ToString()) ||
+                otherCollider2D.CompareTag(Tags.Objects.Object.ToString()))
             {
-                isColliding = true;
+                IsColliding = true;
             }
         }
 
-        void OnTriggerExit2D(Collider2D coll)
+        void OnTriggerExit2D(Collider2D otherCollider2D)
         {
-            if (coll.CompareTag(Tags.Surfaces.Platform.ToString()) == true ||
-                coll.CompareTag(Tags.Helpers.WeakPoint.ToString()) == true ||
-                coll.CompareTag(Tags.Elementies.Limit.ToString()) == true ||
-                coll.CompareTag(Tags.Objects.Object.ToString()) == true)
+            if (otherCollider2D.CompareTag(Tags.Surfaces.Platform.ToString()) ||
+                otherCollider2D.CompareTag(Tags.Helpers.WeakPoint.ToString()) ||
+                otherCollider2D.CompareTag(Tags.Elementies.Limit.ToString()) ||
+                otherCollider2D.CompareTag(Tags.Objects.Object.ToString()))
             {
-                isColliding = false;
+                IsColliding = false;
             }
         }
 

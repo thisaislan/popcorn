@@ -1,4 +1,4 @@
-﻿namespace Popcorn.Metadados
+﻿namespace Popcorn.Metadatas
 {
 
     public static class Tags

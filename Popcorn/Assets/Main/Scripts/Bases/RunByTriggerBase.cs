@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using Errors = Popcorn.Metadados.Strings.Errors;
-using PersonsTags = Popcorn.Metadados.Tags.Persons;
-using ErrorsAuxs = Popcorn.Metadados.Strings.ErrorsAuxs;
-using CombineCharacters = Popcorn.Metadados.Strings.CombineCharacters;
+using Errors = Popcorn.Metadatas.Strings.Errors;
+using PersonsTags = Popcorn.Metadatas.Tags.Persons;
+using ErrorsAuxs = Popcorn.Metadatas.Strings.ErrorsAuxs;
+using CombineCharacters = Popcorn.Metadatas.Strings.CombineCharacters;
 
 namespace Popcorn.Bases
 {
@@ -22,28 +22,37 @@ namespace Popcorn.Bases
 
             foreach (var component in components)
             {
-                if ((component as Collider2D).isTrigger) return;
+                if ((component as Collider2D).isTrigger)
+                {
+                    return;
+                }
             }
 
-            throw new UnityException(Errors.TRIGGER_NOT_FOUND_IN_RUN_WHEN_PLAYER_IS_NEAR +
-                    CombineCharacters.SPACE_COLON_SPACE +
-                    ErrorsAuxs.CALLER +
+            throw new UnityException(Errors.TriggerNotFoundInRunWhenPlayerIsNear +
+                    CombineCharacters.SpaceColonSpace +
+                    ErrorsAuxs.Caller +
                     this.ToString() +
-                    CombineCharacters.COMMA_SPACE +
-                    ErrorsAuxs.GAME_OBJECT +
+                    CombineCharacters.CommaSpace +
+                    ErrorsAuxs.GameObject +
                     this.gameObject.ToString());
         }
 
-        protected virtual void OnTriggerEnter2D(Collider2D coll)
+        protected virtual void OnTriggerEnter2D(Collider2D otherCollider2D)
         {
-            if (coll.CompareTag(PersonsTags.Player.ToString()) == true) StartRun();
+            if (otherCollider2D.CompareTag(PersonsTags.Player.ToString()))
+            {
+                StartRun();
+            }
         }
 
         protected abstract void StartRun();
 
-        protected virtual void OnTriggerExit2D(Collider2D coll)
+        protected virtual void OnTriggerExit2D(Collider2D otherCollider2D)
         {
-            if (coll.CompareTag(PersonsTags.Player.ToString()) == true) StopRun();
+            if (otherCollider2D.CompareTag(PersonsTags.Player.ToString()))
+            {
+                StopRun();
+            }
 
         }
 

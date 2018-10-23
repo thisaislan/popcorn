@@ -7,10 +7,10 @@ namespace Popcorn.ObjectsModifiers
     public class Jump : ICommandMoves
     {
 
-        public void Execute(Rigidbody2D rb2D, float value)
+        public void Execute(Rigidbody2D rigidbody2D, float value)
         {
-            rb2D.velocity = new Vector2(rb2D.velocity.x, 0);
-            rb2D.AddForce(Vector2.up * value);
+            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0);
+            rigidbody2D.AddForce(Vector2.up * value);
         }
 
     }

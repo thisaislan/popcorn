@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 8
+  serializedVersion: 9
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -39,6 +39,7 @@ RenderSettings:
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
   m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -54,11 +55,10 @@ LightmapSettings:
     m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 9
+    serializedVersion: 10
     m_Resolution: 2
     m_BakeResolution: 40
-    m_TextureWidth: 1024
-    m_TextureHeight: 1024
+    m_AtlasSize: 1024
     m_AO: 0
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
@@ -88,6 +88,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -114,7 +115,7 @@ NavMeshSettings:
   m_NavMeshData: {fileID: 0}
 --- !u!114 &21986540 stripped
 MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114060786367433216, guid: c2560c6b468584148a774704c5cd4178,
+  m_CorrespondingSourceObject: {fileID: 114060786367433216, guid: c2560c6b468584148a774704c5cd4178,
     type: 2}
   m_PrefabInternal: {fileID: 1502228826}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -162,9 +163,19 @@ Prefab:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: c780452038f45bd43a5d7ef7648d47c1, type: 2}
+    - target: {fileID: 114448790804289570, guid: b882127b87ea2a343be8ccd363e5d74d,
+        type: 2}
+      propertyPath: StartPostionToLeft
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114448790804289570, guid: b882127b87ea2a343be8ccd363e5d74d,
+        type: 2}
+      propertyPath: IsWalking
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b882127b87ea2a343be8ccd363e5d74d, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b882127b87ea2a343be8ccd363e5d74d, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &53220107
 Prefab:
   m_ObjectHideFlags: 0
@@ -213,8 +224,8 @@ Prefab:
       value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 2f9380d3a5a4714449012b008fd7a8c9, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: 2f9380d3a5a4714449012b008fd7a8c9, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &67174675
 Prefab:
   m_ObjectHideFlags: 0
@@ -259,8 +270,8 @@ Prefab:
       value: Shelf (6)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &138658459
 Prefab:
   m_ObjectHideFlags: 0
@@ -305,8 +316,8 @@ Prefab:
       value: Shelf (13)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &142132481
 Prefab:
   m_ObjectHideFlags: 0
@@ -352,8 +363,8 @@ Prefab:
       value: 0.5882353
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 29277224dfb5bc140bd12ac0eb15acbb, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: 29277224dfb5bc140bd12ac0eb15acbb, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &171292179
 Prefab:
   m_ObjectHideFlags: 0
@@ -398,8 +409,8 @@ Prefab:
       value: SugarCube (16)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &194203604
 Prefab:
   m_ObjectHideFlags: 0
@@ -457,8 +468,8 @@ Prefab:
       value: -0.79
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 3ee646d0e78ad04448a5448c3fa5bbf3, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: 3ee646d0e78ad04448a5448c3fa5bbf3, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &252482975
 Prefab:
   m_ObjectHideFlags: 0
@@ -507,9 +518,14 @@ Prefab:
       propertyPath: startPostionToLeft
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114448790804289570, guid: b882127b87ea2a343be8ccd363e5d74d,
+        type: 2}
+      propertyPath: IsWalking
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b882127b87ea2a343be8ccd363e5d74d, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b882127b87ea2a343be8ccd363e5d74d, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &252993282
 Prefab:
   m_ObjectHideFlags: 0
@@ -554,8 +570,8 @@ Prefab:
       value: Shelf1 (5)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b219d477eace4ed489ef05e093d08541, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b219d477eace4ed489ef05e093d08541, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &320010695
 Prefab:
   m_ObjectHideFlags: 0
@@ -600,8 +616,8 @@ Prefab:
       value: Shelf (9)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &354958843
 Prefab:
   m_ObjectHideFlags: 0
@@ -646,8 +662,8 @@ Prefab:
       value: SugarCube (6)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &376285999
 Prefab:
   m_ObjectHideFlags: 0
@@ -692,8 +708,8 @@ Prefab:
       value: Phosphor (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 3ee646d0e78ad04448a5448c3fa5bbf3, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: 3ee646d0e78ad04448a5448c3fa5bbf3, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &398941484
 Prefab:
   m_ObjectHideFlags: 0
@@ -738,8 +754,8 @@ Prefab:
       value: Phosphor (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 3ee646d0e78ad04448a5448c3fa5bbf3, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: 3ee646d0e78ad04448a5448c3fa5bbf3, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &400223775
 Prefab:
   m_ObjectHideFlags: 0
@@ -859,11 +875,11 @@ Prefab:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: cce3c8c79bd98dc45851a86668500887, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: cce3c8c79bd98dc45851a86668500887, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!20 &400223776 stripped
 Camera:
-  m_PrefabParentObject: {fileID: 20326364071060674, guid: cce3c8c79bd98dc45851a86668500887,
+  m_CorrespondingSourceObject: {fileID: 20326364071060674, guid: cce3c8c79bd98dc45851a86668500887,
     type: 2}
   m_PrefabInternal: {fileID: 400223775}
 --- !u!1001 &401630298
@@ -910,8 +926,8 @@ Prefab:
       value: Table (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 072187e1a0c415045a6a41b75c571841, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: 072187e1a0c415045a6a41b75c571841, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &455531828
 Prefab:
   m_ObjectHideFlags: 0
@@ -956,8 +972,8 @@ Prefab:
       value: Shelf (7)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &489397597
 Prefab:
   m_ObjectHideFlags: 0
@@ -997,9 +1013,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 114371562350408422, guid: 780dde82617862d498cceeb3628778f0,
+        type: 2}
+      propertyPath: LimitSide
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 780dde82617862d498cceeb3628778f0, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: 780dde82617862d498cceeb3628778f0, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &496630401
 Prefab:
   m_ObjectHideFlags: 0
@@ -1044,8 +1065,8 @@ Prefab:
       value: Shelf (16)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &508191585
 Prefab:
   m_ObjectHideFlags: 0
@@ -1100,8 +1121,8 @@ Prefab:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b882127b87ea2a343be8ccd363e5d74d, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b882127b87ea2a343be8ccd363e5d74d, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &517126380
 Prefab:
   m_ObjectHideFlags: 0
@@ -1162,8 +1183,8 @@ Prefab:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 9e79e33807fc9ff4e9d0643003228b28, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: 9e79e33807fc9ff4e9d0643003228b28, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &521682610
 Prefab:
   m_ObjectHideFlags: 0
@@ -1220,8 +1241,8 @@ Prefab:
       value: Platform
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 2f9380d3a5a4714449012b008fd7a8c9, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: 2f9380d3a5a4714449012b008fd7a8c9, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &541778397
 Prefab:
   m_ObjectHideFlags: 0
@@ -1270,9 +1291,14 @@ Prefab:
       propertyPath: velocity
       value: 1.8
       objectReference: {fileID: 0}
+    - target: {fileID: 114448790804289570, guid: b882127b87ea2a343be8ccd363e5d74d,
+        type: 2}
+      propertyPath: IsWalking
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b882127b87ea2a343be8ccd363e5d74d, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b882127b87ea2a343be8ccd363e5d74d, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &582833068
 Prefab:
   m_ObjectHideFlags: 0
@@ -1317,8 +1343,8 @@ Prefab:
       value: Shelf (10)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &608644086
 Prefab:
   m_ObjectHideFlags: 0
@@ -1363,8 +1389,8 @@ Prefab:
       value: Shelf1 (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b219d477eace4ed489ef05e093d08541, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b219d477eace4ed489ef05e093d08541, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &613508954
 Prefab:
   m_ObjectHideFlags: 0
@@ -1409,9 +1435,14 @@ Prefab:
       propertyPath: gameObjectRelativy
       value: 
       objectReference: {fileID: 1298779425}
+    - target: {fileID: 114826931235600598, guid: 0d056e51eebdb2149a1d504c45b3404c,
+        type: 2}
+      propertyPath: GameObjectRelativy
+      value: 
+      objectReference: {fileID: 1298779425}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0d056e51eebdb2149a1d504c45b3404c, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: 0d056e51eebdb2149a1d504c45b3404c, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &704129591
 Prefab:
   m_ObjectHideFlags: 0
@@ -1456,8 +1487,8 @@ Prefab:
       value: SugarCube (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &725999735
 Prefab:
   m_ObjectHideFlags: 0
@@ -1502,11 +1533,11 @@ Prefab:
       value: SugarCube (13)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &755332821 stripped
 GameObject:
-  m_PrefabParentObject: {fileID: 1707556217579082, guid: a0a39ee2d593943448aabed8c857d757,
+  m_CorrespondingSourceObject: {fileID: 1707556217579082, guid: a0a39ee2d593943448aabed8c857d757,
     type: 2}
   m_PrefabInternal: {fileID: 1022889278}
 --- !u!1001 &914266669
@@ -1553,8 +1584,8 @@ Prefab:
       value: SugarCube (7)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &971115872
 Prefab:
   m_ObjectHideFlags: 0
@@ -1615,8 +1646,8 @@ Prefab:
       value: 0.78431374
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: adf7b63c17136fb4b9e60c53088ea25f, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: adf7b63c17136fb4b9e60c53088ea25f, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1022889278
 Prefab:
   m_ObjectHideFlags: 0
@@ -1662,8 +1693,8 @@ Prefab:
       value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: a0a39ee2d593943448aabed8c857d757, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: a0a39ee2d593943448aabed8c857d757, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1027903793
 Prefab:
   m_ObjectHideFlags: 0
@@ -1708,8 +1739,8 @@ Prefab:
       value: Shelf (14)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1051571570
 Prefab:
   m_ObjectHideFlags: 0
@@ -1754,8 +1785,8 @@ Prefab:
       value: SugarCube (10)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1067803457
 Prefab:
   m_ObjectHideFlags: 0
@@ -1810,8 +1841,8 @@ Prefab:
       value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 078c3c0ac13a9f143885cf358a9e41d9, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: 078c3c0ac13a9f143885cf358a9e41d9, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1093520284
 Prefab:
   m_ObjectHideFlags: 0
@@ -1860,9 +1891,19 @@ Prefab:
       propertyPath: velocity
       value: 1.8
       objectReference: {fileID: 0}
+    - target: {fileID: 114448790804289570, guid: b882127b87ea2a343be8ccd363e5d74d,
+        type: 2}
+      propertyPath: IsWalking
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114448790804289570, guid: b882127b87ea2a343be8ccd363e5d74d,
+        type: 2}
+      propertyPath: StartPostionToLeft
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b882127b87ea2a343be8ccd363e5d74d, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b882127b87ea2a343be8ccd363e5d74d, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1104297182
 Prefab:
   m_ObjectHideFlags: 0
@@ -1907,8 +1948,8 @@ Prefab:
       value: SugarCube (15)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1126958953
 Prefab:
   m_ObjectHideFlags: 0
@@ -1953,8 +1994,8 @@ Prefab:
       value: Shelf (18)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1139731187
 Prefab:
   m_ObjectHideFlags: 0
@@ -1999,8 +2040,8 @@ Prefab:
       value: Table
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 072187e1a0c415045a6a41b75c571841, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: 072187e1a0c415045a6a41b75c571841, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1169712204
 Prefab:
   m_ObjectHideFlags: 0
@@ -2045,8 +2086,8 @@ Prefab:
       value: Shelf (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1197212166
 Prefab:
   m_ObjectHideFlags: 0
@@ -2091,9 +2132,19 @@ Prefab:
       propertyPath: gameObjectRelativy
       value: 
       objectReference: {fileID: 755332821}
+    - target: {fileID: 114355410526596484, guid: f867a096957783043bab7fbe15b59fb0,
+        type: 2}
+      propertyPath: GameObjectRelativy
+      value: 
+      objectReference: {fileID: 755332821}
+    - target: {fileID: 114355410526596484, guid: f867a096957783043bab7fbe15b59fb0,
+        type: 2}
+      propertyPath: LimitSide
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f867a096957783043bab7fbe15b59fb0, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: f867a096957783043bab7fbe15b59fb0, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1278302406
 Prefab:
   m_ObjectHideFlags: 0
@@ -2138,8 +2189,8 @@ Prefab:
       value: Shelf (11)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1292339297
 Prefab:
   m_ObjectHideFlags: 0
@@ -2180,14 +2231,14 @@ Prefab:
       value: 32
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: ee23957b7af20e34eb277a1b84fbf362, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: ee23957b7af20e34eb277a1b84fbf362, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1298779425
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1298779427}
   - component: {fileID: 1298779426}
@@ -2202,7 +2253,7 @@ GameObject:
 --- !u!212 &1298779426
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1298779425}
   m_Enabled: 1
@@ -2212,6 +2263,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -2243,10 +2295,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1298779427
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1298779425}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -2259,7 +2312,7 @@ Transform:
 --- !u!114 &1298779428
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1298779425}
   m_Enabled: 1
@@ -2322,8 +2375,8 @@ Prefab:
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1345592319
 Prefab:
   m_ObjectHideFlags: 0
@@ -2368,8 +2421,8 @@ Prefab:
       value: SugarCube (9)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1365263954
 Prefab:
   m_ObjectHideFlags: 0
@@ -2414,8 +2467,8 @@ Prefab:
       value: Shelf (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1436775435
 Prefab:
   m_ObjectHideFlags: 0
@@ -2465,8 +2518,8 @@ Prefab:
       value: 204915507
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 3ee646d0e78ad04448a5448c3fa5bbf3, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: 3ee646d0e78ad04448a5448c3fa5bbf3, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1441523886
 Prefab:
   m_ObjectHideFlags: 0
@@ -2507,8 +2560,8 @@ Prefab:
       value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: bc8be0903f71594499c9be11571823b3, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: bc8be0903f71594499c9be11571823b3, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1459654519
 Prefab:
   m_ObjectHideFlags: 0
@@ -2553,8 +2606,8 @@ Prefab:
       value: Shelf (5)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1488077376
 Prefab:
   m_ObjectHideFlags: 0
@@ -2604,8 +2657,8 @@ Prefab:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b882127b87ea2a343be8ccd363e5d74d, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b882127b87ea2a343be8ccd363e5d74d, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1502228826
 Prefab:
   m_ObjectHideFlags: 0
@@ -2616,12 +2669,12 @@ Prefab:
     - target: {fileID: 224916069898429920, guid: c2560c6b468584148a774704c5cd4178,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: -33.44
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224916069898429920, guid: c2560c6b468584148a774704c5cd4178,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.09
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224916069898429920, guid: c2560c6b468584148a774704c5cd4178,
         type: 2}
@@ -2666,52 +2719,52 @@ Prefab:
     - target: {fileID: 224916069898429920, guid: c2560c6b468584148a774704c5cd4178,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224916069898429920, guid: c2560c6b468584148a774704c5cd4178,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224916069898429920, guid: c2560c6b468584148a774704c5cd4178,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224916069898429920, guid: c2560c6b468584148a774704c5cd4178,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224916069898429920, guid: c2560c6b468584148a774704c5cd4178,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224916069898429920, guid: c2560c6b468584148a774704c5cd4178,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224916069898429920, guid: c2560c6b468584148a774704c5cd4178,
         type: 2}
       propertyPath: m_Pivot.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224916069898429920, guid: c2560c6b468584148a774704c5cd4178,
         type: 2}
       propertyPath: m_Pivot.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224936021364048644, guid: c2560c6b468584148a774704c5cd4178,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 271
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224083859225646268, guid: c2560c6b468584148a774704c5cd4178,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 286
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 223890744610078778, guid: c2560c6b468584148a774704c5cd4178,
         type: 2}
@@ -2813,9 +2866,29 @@ Prefab:
       propertyPath: shadowInY
       value: -0.01
       objectReference: {fileID: 0}
+    - target: {fileID: 224916069898429920, guid: c2560c6b468584148a774704c5cd4178,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224916069898429920, guid: c2560c6b468584148a774704c5cd4178,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224916069898429920, guid: c2560c6b468584148a774704c5cd4178,
+        type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114490314413148504, guid: c2560c6b468584148a774704c5cd4178,
+        type: 2}
+      propertyPath: Target
+      value: 
+      objectReference: {fileID: 21986540}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: c2560c6b468584148a774704c5cd4178, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: c2560c6b468584148a774704c5cd4178, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1506185157
 Prefab:
   m_ObjectHideFlags: 0
@@ -2860,8 +2933,8 @@ Prefab:
       value: Shelf (8)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1556513725
 Prefab:
   m_ObjectHideFlags: 0
@@ -2907,8 +2980,8 @@ Prefab:
       value: 0.5882353
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: d208530f9dd10094b9e104a3cba9ce61, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: d208530f9dd10094b9e104a3cba9ce61, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1564009254
 Prefab:
   m_ObjectHideFlags: 0
@@ -2953,8 +3026,8 @@ Prefab:
       value: Pop
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 6297869e5a2a64e429a6c3fcc00f5dbd, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: 6297869e5a2a64e429a6c3fcc00f5dbd, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1580362335
 Prefab:
   m_ObjectHideFlags: 0
@@ -2999,8 +3072,8 @@ Prefab:
       value: Shelf (17)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1580902071
 Prefab:
   m_ObjectHideFlags: 0
@@ -3041,8 +3114,8 @@ Prefab:
       value: 38
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1603854840
 Prefab:
   m_ObjectHideFlags: 0
@@ -3087,8 +3160,8 @@ Prefab:
       value: SugarCube (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1612054903
 Prefab:
   m_ObjectHideFlags: 0
@@ -3128,9 +3201,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114309861933128910, guid: 16f41a96c2dd07e4a887f7315caffc72,
+        type: 2}
+      propertyPath: LimitSide
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 16f41a96c2dd07e4a887f7315caffc72, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: 16f41a96c2dd07e4a887f7315caffc72, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1641086260
 Prefab:
   m_ObjectHideFlags: 0
@@ -3171,8 +3249,8 @@ Prefab:
       value: 65
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 2f9380d3a5a4714449012b008fd7a8c9, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: 2f9380d3a5a4714449012b008fd7a8c9, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1651355388
 Prefab:
   m_ObjectHideFlags: 0
@@ -3217,8 +3295,8 @@ Prefab:
       value: Shelf (15)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1662909970
 Prefab:
   m_ObjectHideFlags: 0
@@ -3263,8 +3341,8 @@ Prefab:
       value: Shelf1 (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b219d477eace4ed489ef05e093d08541, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b219d477eace4ed489ef05e093d08541, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1666318243
 Prefab:
   m_ObjectHideFlags: 0
@@ -3305,8 +3383,8 @@ Prefab:
       value: 62
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b219d477eace4ed489ef05e093d08541, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b219d477eace4ed489ef05e093d08541, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1679680921
 Prefab:
   m_ObjectHideFlags: 0
@@ -3351,8 +3429,8 @@ Prefab:
       value: SugarCube (5)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1703390930
 Prefab:
   m_ObjectHideFlags: 0
@@ -3397,8 +3475,8 @@ Prefab:
       value: SugarCubeLadder (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 2f9380d3a5a4714449012b008fd7a8c9, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: 2f9380d3a5a4714449012b008fd7a8c9, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1756460004
 Prefab:
   m_ObjectHideFlags: 0
@@ -3454,8 +3532,8 @@ Prefab:
       value: 1.39
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 7337d398637255441996f5b9ea24f86b, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: 7337d398637255441996f5b9ea24f86b, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1782610336
 Prefab:
   m_ObjectHideFlags: 0
@@ -3504,8 +3582,8 @@ Prefab:
       value: -0.04
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 3ee646d0e78ad04448a5448c3fa5bbf3, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: 3ee646d0e78ad04448a5448c3fa5bbf3, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1793204892
 Prefab:
   m_ObjectHideFlags: 0
@@ -3550,8 +3628,8 @@ Prefab:
       value: Shelf1 (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b219d477eace4ed489ef05e093d08541, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b219d477eace4ed489ef05e093d08541, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1842794462
 Prefab:
   m_ObjectHideFlags: 0
@@ -3600,9 +3678,14 @@ Prefab:
       propertyPath: velocity
       value: 1.8
       objectReference: {fileID: 0}
+    - target: {fileID: 114448790804289570, guid: b882127b87ea2a343be8ccd363e5d74d,
+        type: 2}
+      propertyPath: IsWalking
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b882127b87ea2a343be8ccd363e5d74d, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b882127b87ea2a343be8ccd363e5d74d, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1864638868
 Prefab:
   m_ObjectHideFlags: 0
@@ -3647,8 +3730,8 @@ Prefab:
       value: SugarCube (11)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1888227760
 Prefab:
   m_ObjectHideFlags: 0
@@ -3693,8 +3776,8 @@ Prefab:
       value: SugarCube (14)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1914599610
 Prefab:
   m_ObjectHideFlags: 0
@@ -3739,8 +3822,8 @@ Prefab:
       value: Shelf (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1921296271
 Prefab:
   m_ObjectHideFlags: 0
@@ -3785,8 +3868,8 @@ Prefab:
       value: SugarCube (8)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1944831256
 Prefab:
   m_ObjectHideFlags: 0
@@ -3831,8 +3914,8 @@ Prefab:
       value: SugarCube (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1971433507
 Prefab:
   m_ObjectHideFlags: 0
@@ -3881,9 +3964,14 @@ Prefab:
       propertyPath: isWalking
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114448790804289570, guid: b882127b87ea2a343be8ccd363e5d74d,
+        type: 2}
+      propertyPath: StartPostionToLeft
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b882127b87ea2a343be8ccd363e5d74d, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b882127b87ea2a343be8ccd363e5d74d, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1983768430
 Prefab:
   m_ObjectHideFlags: 0
@@ -3938,8 +4026,8 @@ Prefab:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b882127b87ea2a343be8ccd363e5d74d, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b882127b87ea2a343be8ccd363e5d74d, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1994734519
 Prefab:
   m_ObjectHideFlags: 0
@@ -3988,9 +4076,19 @@ Prefab:
       propertyPath: velocity
       value: 1.6
       objectReference: {fileID: 0}
+    - target: {fileID: 114448790804289570, guid: b882127b87ea2a343be8ccd363e5d74d,
+        type: 2}
+      propertyPath: IsWalking
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114448790804289570, guid: b882127b87ea2a343be8ccd363e5d74d,
+        type: 2}
+      propertyPath: StartPostionToLeft
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b882127b87ea2a343be8ccd363e5d74d, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b882127b87ea2a343be8ccd363e5d74d, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &2023128446
 Prefab:
   m_ObjectHideFlags: 0
@@ -4035,8 +4133,8 @@ Prefab:
       value: Shelf (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b96d04a560d889f48a51e23d2a03c580, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &2040381815
 Prefab:
   m_ObjectHideFlags: 0
@@ -4081,8 +4179,8 @@ Prefab:
       value: SugarCube (12)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &2066190125
 Prefab:
   m_ObjectHideFlags: 0
@@ -4127,8 +4225,8 @@ Prefab:
       value: SugarCube (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: f16f7df5c66c56645b3444ecacfc8f3a, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &2118336448
 Prefab:
   m_ObjectHideFlags: 0
@@ -4174,8 +4272,8 @@ Prefab:
       value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 3ee646d0e78ad04448a5448c3fa5bbf3, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: 3ee646d0e78ad04448a5448c3fa5bbf3, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &2128450664
 Prefab:
   m_ObjectHideFlags: 0
@@ -4220,5 +4318,5 @@ Prefab:
       value: Shelf1 (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b219d477eace4ed489ef05e093d08541, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: b219d477eace4ed489ef05e093d08541, type: 2}
+  m_IsPrefabAsset: 0
