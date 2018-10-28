@@ -29,8 +29,8 @@
             public const string CameraNotFound = "Camera not found in screen. Please put the camera in scene to continue";
             public const string MultipleCamerasFound = "Multiple camera found in screen.  Please remove multiple instances of camera to continue";
             public const string TriggerNotFoundInRunWhenPlayerIsNear = "Trigger not found in object runby trigger type";
-            public const string WrongPlayerTag = "The player objecto has wrong tag";
-            public const string WrongEnemyTag = "Any enemy objecto has wrong tag";
+            public const string WrongPlayerTag = "The player object has wrong tag";
+            public const string WrongEnemyTag = "Any enemy object has wrong tag";
             public const string TriggerNotFoundInATriggerHelper = "Trigger not found in object trigger helper type";
             public const string AttemptStopDontInitializedBackgroundMusic = "Attempt to stop background music that was not started";
         }
