@@ -7,12 +7,13 @@ namespace Popcorn.ObjectsModifiers
     public class Move : ICommandMoves
     {
 
-        public void Execute(Rigidbody2D rigidbody2D, float value)
+        public void Execute(Rigidbody2D rb, float value)
         {
-            Vector2 velocity = rigidbody2D.velocity;
+            Vector2 velocity = rb.velocity;
             velocity.x = value;
-            rigidbody2D.velocity = velocity;
+            rb.velocity = velocity;
         }
 
     }
+    
 }

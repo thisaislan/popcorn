@@ -13,11 +13,10 @@ namespace Popcorn.Bases
 
         protected virtual void Awake()
         {
-            Collider2D ThisCollider2D = (Collider2D)Getter.Component(this, gameObject, typeof(Collider2D));
+            Collider2D coll = (Collider2D)Getter.Component(this, gameObject, typeof(Collider2D));
 
-            if (!ThisCollider2D.isTrigger)
+            if (!coll.isTrigger)
             {
-
                 throw new UnityException(Errors.TriggerNotFoundInATriggerHelper +
                     CombineCharacters.SpaceColonSpace +
                     ErrorsAuxs.Caller +
@@ -29,4 +28,5 @@ namespace Popcorn.Bases
         }
 
     }
+
 }

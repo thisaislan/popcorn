@@ -7,42 +7,29 @@ namespace Popcorn.GameObjects.Objects
     public class Limit : MonoBehaviour
     {
 
-        [SerializeField]
-        RelativyPosiotions RelativyPosiotion;
-        [SerializeField]
-        GameObject GameObjectRelativy;
-        [SerializeField]
-        float Distance = 4;
+        [SerializeField] RelativyPosiotions relativyPosiotion;
+        [SerializeField] GameObject gameObjectRelativy;
+        [SerializeField] float distance = 4;
 
         void Awake()
         {
-            if (GameObjectRelativy != null)
-            {
-                SetPosition();
-            }
+            if (gameObjectRelativy != null) { SetPosition(); }
         }
 
         void SetPosition()
         {
             Vector3 ThisPosition = this.transform.position;
 
-            switch (RelativyPosiotion)
+            switch (relativyPosiotion)
             {
-                case RelativyPosiotions.After:
-                    ThisPosition.x = GameObjectRelativy.transform.position.x + Distance;
-                    break;
-                case RelativyPosiotions.Before:
-                    ThisPosition.x = GameObjectRelativy.transform.position.x - Distance;
-                    break;
-                case RelativyPosiotions.Bellow:
-                    ThisPosition.y = GameObjectRelativy.transform.position.y - Distance;
-                    break;
-                case RelativyPosiotions.Above:
-                    ThisPosition.y = GameObjectRelativy.transform.position.y + Distance;
-                    break;
+                case RelativyPosiotions.After: ThisPosition.x = gameObjectRelativy.transform.position.x + distance; break;
+                case RelativyPosiotions.Before: ThisPosition.x = gameObjectRelativy.transform.position.x - distance; break;
+                case RelativyPosiotions.Bellow: ThisPosition.y = gameObjectRelativy.transform.position.y - distance; break;
+                case RelativyPosiotions.Above: ThisPosition.y = gameObjectRelativy.transform.position.y + distance; break;
             }
             this.transform.position = ThisPosition;
         }
 
     }
+    
 }

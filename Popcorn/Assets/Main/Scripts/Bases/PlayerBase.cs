@@ -15,15 +15,15 @@ namespace Popcorn.Bases
 
         protected enum AnimationParameters { WinTrigger, IsJump, Velocity, IsAlive, IdleTrigger, Hit };
 
-        protected PopColliderHelper BottomColliderHelper;
-        protected PopColliderHelper RightColliderHelper;
-        protected PopColliderHelper LeftColliderHelper;
+        protected PopColliderHelper bottomColliderHelper;
+        protected PopColliderHelper rightColliderHelper;
+        protected PopColliderHelper leftColliderHelper;
 
-        protected AudioSource JumpAudioSource;
-        protected AudioSource WinAudioSource;
-        protected AudioSource DeathAudioSource;
+        protected AudioSource jumpAudioSource;
+        protected AudioSource winAudioSource;
+        protected AudioSource deathAudioSource;
 
-        protected float BottomLimit;
+        protected float bottomLimit;
 
         protected override void Awake()
         {
@@ -36,23 +36,23 @@ namespace Popcorn.Bases
 
         void GetAudioSources()
         {
-            JumpAudioSource = (AudioSource)Getter.ComponentInChild(this, gameObject, typeof(AudioSource), 0);
-            WinAudioSource = (AudioSource)Getter.ComponentInChild(this, gameObject, typeof(AudioSource), 1);
-            DeathAudioSource = (AudioSource)Getter.ComponentInChild(this, gameObject, typeof(AudioSource), 2);
+            jumpAudioSource = (AudioSource)Getter.ComponentInChild(this, gameObject, typeof(AudioSource), 0);
+            winAudioSource = (AudioSource)Getter.ComponentInChild(this, gameObject, typeof(AudioSource), 1);
+            deathAudioSource = (AudioSource)Getter.ComponentInChild(this, gameObject, typeof(AudioSource), 2);
         }
 
         void SetBottomLimiteToStillAlive()
         {
-            BottomLimit = Getter.ObjectWithTag(this, ElementiesTags.BottomLimitView.ToString()).
-                transform.position.y - 7;
+            bottomLimit = Getter.ObjectWithTag(this, ElementiesTags.BottomLimitView.ToString()).transform.position.y - 7;
         }
 
         void GetHelpers()
         {
-            BottomColliderHelper = (PopColliderHelper)Getter.ComponentInChild(this, gameObject, typeof(PopColliderHelper), 0);
-            RightColliderHelper = (PopColliderHelper)Getter.ComponentInChild(this, gameObject, typeof(PopColliderHelper), 1);
-            LeftColliderHelper = (PopColliderHelper)Getter.ComponentInChild(this, gameObject, typeof(PopColliderHelper), 2);
+            bottomColliderHelper = (PopColliderHelper)Getter.ComponentInChild(this, gameObject, typeof(PopColliderHelper), 0);
+            rightColliderHelper = (PopColliderHelper)Getter.ComponentInChild(this, gameObject, typeof(PopColliderHelper), 1);
+            leftColliderHelper = (PopColliderHelper)Getter.ComponentInChild(this, gameObject, typeof(PopColliderHelper), 2);
         }
 
     }
+    
 }

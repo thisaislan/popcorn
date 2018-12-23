@@ -8,8 +8,7 @@ namespace Popcorn.GameObjects.Helpers
     public class PopColliderHelper : TriggerHelperBase
     {
 
-        [HideInInspector]
-        public bool IsColliding { get; private set; }
+        [HideInInspector] public bool IsColliding { get; private set; }
 
         protected override void Awake()
         {
@@ -28,7 +27,7 @@ namespace Popcorn.GameObjects.Helpers
             }
         }
 
-        private void OnTriggerStay2D(Collider2D otherCollider2D)
+        void OnTriggerStay2D(Collider2D otherCollider2D)
         {
             if (otherCollider2D.CompareTag(Tags.Surfaces.Platform.ToString()) ||
                 otherCollider2D.CompareTag(Tags.Helpers.WeakPoint.ToString()) ||
@@ -51,4 +50,5 @@ namespace Popcorn.GameObjects.Helpers
         }
 
     }
+
 }

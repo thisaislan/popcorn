@@ -14,7 +14,7 @@ namespace Popcorn.Managers
         {
             ScenesNames nextSceneName;
 
-            switch (App.CurrentSceneName)
+            switch (App.currentSceneName)
             {
                 case ScenesNames.World1Scene1:
                     nextSceneName = ScenesNames.World1Scene1;
@@ -23,9 +23,10 @@ namespace Popcorn.Managers
                     nextSceneName = ScenesNames.World1Scene1;
                     break;
             }
-            App.CurrentSceneName = nextSceneName;
+            App.currentSceneName = nextSceneName;
             SceneManager.LoadScene(nextSceneName.ToString());
         }
 
     }
+    
 }

@@ -18,30 +18,26 @@ namespace Popcorn.GameObjects.Persons
     public class Pop : PlayerBase
     {
 
-        [SerializeField]
-        float TimeToRestatIdle = 4.5f;
-        [SerializeField]
-        float Velocity = 4f;
-        [SerializeField]
-        float JumpForce = 900f;
-        [SerializeField]
-        float HitForce = 300f;
+        [SerializeField] float timeToRestatIdle = 4.5f;
+        [SerializeField] float velocity = 4f;
+        [SerializeField] float jumpForce = 900f;
+        [SerializeField] float hitForce = 300f;
 
-        float TimeInStandBy = 0f;
-        bool IsJumping = false;
-        float LastDir = Transforms.Direction.Right;
+        float timeInStandBy = 0f;
+        bool isJumping = false;
+        float lastDir = Transforms.Direction.Right;
 
-        Jump Jump = new Jump();
-        Move Move = new Move();
+        Jump jump = new Jump();
+        Move move = new Move();
 
         void FixedUpdate()
         {
-            TimeInStandBy += Time.deltaTime;
+            timeInStandBy += Time.deltaTime;
 
-            if (TimeInStandBy >= TimeToRestatIdle)
+            if (timeInStandBy >= timeToRestatIdle)
             {
-                ThisAnimator.SetTrigger(AnimationParameters.IdleTrigger.ToString());
-                TimeInStandBy = 0;
+                animator.SetTrigger(AnimationParameters.IdleTrigger.ToString());
+                timeInStandBy = 0;
             }
         }
 
@@ -50,75 +46,69 @@ namespace Popcorn.GameObjects.Persons
 
             if (CheckIfDontCanMove())
             {
-                TimeInStandBy = 0;
+                timeInStandBy = 0;
                 return;
             }
             CleanVelocityX();
 
             if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) &&
-                !LeftColliderHelper.IsColliding)
+                !leftColliderHelper.IsColliding)
             {
                 ExecuteMove(Transforms.Direction.Left);
             }
             else if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) &&
-                !RightColliderHelper.IsColliding)
+                !rightColliderHelper.IsColliding)
             {
                 ExecuteMove(Transforms.Direction.Right);
             }
 
             if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) &&
-             !IsJumping)
+             !isJumping)
             {
-                ExecuteJump(JumpForce);
+                ExecuteJump(jumpForce);
             }
 
-            ThisAnimator.SetFloat(AnimationParameters.Velocity.ToString(), GetAbsRunVelocity());
-            IsJumping = !BottomColliderHelper.IsColliding;
-            ThisAnimator.SetBool(AnimationParameters.IsJump.ToString(), IsJumping);
+            animator.SetFloat(AnimationParameters.Velocity.ToString(), GetAbsRunVelocity());
+            isJumping = !bottomColliderHelper.IsColliding;
+            animator.SetBool(AnimationParameters.IsJump.ToString(), isJumping);
             CheckAliveConditions();
         }
 
         void ExecuteMove(float dir)
         {
-            Move.Execute(ThisRigidbody2D, Velocity * dir);
-            LastDir = dir;
-            TimeInStandBy = 0;
-            ThisSpriteRenderer.flipX = dir < 0;
+            move.Execute(rb, velocity * dir);
+            lastDir = dir;
+            timeInStandBy = 0;
+            spriteRenderer.flipX = dir < 0;
 
         }
 
         void ExecuteJump(float force)
         {
-            Jump.Execute(ThisRigidbody2D, force);
-            AudioManager.Instance.PlaySoundOnce(caller: this, sound: JumpAudioSource);
-            TimeInStandBy = 0;
+            jump.Execute(rb, force);
+            AudioManager.Instance.PlaySoundOnce(caller: this, sound: jumpAudioSource);
+            timeInStandBy = 0;
         }
 
         void CleanVelocityX()
         {
-            Vector2 vel = ThisRigidbody2D.velocity;
+            Vector2 vel = rb.velocity;
             vel.x = 0;
-            ThisRigidbody2D.velocity = vel;
+            rb.velocity = vel;
         }
 
         bool CheckIfDontCanMove()
         {
             return !IsAlive ||
                 GameBehavior.GameState == GameStates.Paused ||
-                ThisAnimator.GetBool(AnimationParameters.Hit.ToString());
+                animator.GetBool(AnimationParameters.Hit.ToString());
         }
 
         void CheckAliveConditions()
         {
-            if (this.transform.position.y <= BottomLimit)
-            {
-                Kill(JumpForce * 2);
-            }
+            if (this.transform.position.y <= bottomLimit) { Kill(jumpForce * 2); }
 
-            if (GameBehavior.GameState == GameStates.TimeOut)
-            {
-                Kill(JumpForce);
-            }
+            if (GameBehavior.GameState == GameStates.TimeOut) { Kill(jumpForce); }
         }
 
         void OnCollisionEnter2D(Collision2D otherCollider2D)
@@ -127,14 +117,8 @@ namespace Popcorn.GameObjects.Persons
             {
                 ContactPoint2D contactPoint2D = otherCollider2D.contacts[0];
 
-                if (!contactPoint2D.collider.CompareTag(HelpersTags.WeakPoint.ToString()))
-                {
-                    Kill(JumpForce);
-                }
-                else
-                {
-                    ExecuteJump(JumpForce - 50);
-                }
+                if (!contactPoint2D.collider.CompareTag(HelpersTags.WeakPoint.ToString())) { Kill(jumpForce); }
+                else { ExecuteJump(jumpForce - 50); }
 
             }
             else if (otherCollider2D.gameObject.CompareTag(ObjectsTags.Hit.ToString()))
@@ -145,52 +129,38 @@ namespace Popcorn.GameObjects.Persons
 
         void OnCollisionStay2D(Collision2D otherCollider2D)
         {
-            if (otherCollider2D.gameObject.CompareTag(ObjectsTags.Hit.ToString()))
-            {
-                Hit();
-            }
+            if (otherCollider2D.gameObject.CompareTag(ObjectsTags.Hit.ToString())) { Hit(); }
         }
 
         void OnTriggerEnter2D(Collider2D otherCollider2D)
         {
-            if (otherCollider2D.gameObject.CompareTag(ObjectsTags.EndPoint.ToString()))
-            {
-                Win();
-            }
+            if (otherCollider2D.gameObject.CompareTag(ObjectsTags.EndPoint.ToString())) { Win(); }
         }
 
         void Win()
         {
-            AudioManager.Instance.PlaySoundOnce(caller: this, sound: WinAudioSource);
-            if (IsJumping)
-            {
-                ThisAnimator.SetTrigger(AnimationParameters.WinTrigger.ToString());
-            }
-            else
-            {
-                StartCoroutine(WinAnimation());
-            }
+            AudioManager.Instance.PlaySoundOnce(caller: this, sound: winAudioSource);
+
+            if (isJumping) { animator.SetTrigger(AnimationParameters.WinTrigger.ToString()); }
+            else { StartCoroutine(WinAnimation()); }
         }
 
         IEnumerator WinAnimation()
         {
             yield return new WaitForSeconds(Times.Waits.MinimunPlus);
-            ThisAnimator.SetTrigger(AnimationParameters.WinTrigger.ToString());
+            animator.SetTrigger(AnimationParameters.WinTrigger.ToString());
         }
 
-        public float GetAbsRunVelocity()
-        {
-            return Mathf.Abs(ThisRigidbody2D.velocity.x);
-        }
+        public float GetAbsRunVelocity() { return Mathf.Abs(rb.velocity.x); }
 
         void Kill(float forceToUp)
         {
             if (IsAlive)
             {
-                ThisRigidbody2D.velocity = Vector2.zero;
-                ThisRigidbody2D.gravityScale = Transforms.Gravity.Without;
+                rb.velocity = Vector2.zero;
+                rb.gravityScale = Transforms.Gravity.Without;
                 IsAlive = false;
-                ThisAnimator.SetBool(AnimationParameters.IsAlive.ToString(), IsAlive);
+                animator.SetBool(AnimationParameters.IsAlive.ToString(), IsAlive);
                 StartCoroutine(KillAnimation(forceToUp));
             }
         }
@@ -198,36 +168,36 @@ namespace Popcorn.GameObjects.Persons
         IEnumerator KillAnimation(float forceToUp)
         {
             yield return new WaitForSeconds(Times.Waits.Minimun);
-            AudioManager.Instance.PlaySoundOnce(caller: this, sound: DeathAudioSource);
-            ThisRigidbody2D.gravityScale = Transforms.Gravity.Hard;
-            Jump.Execute(ThisRigidbody2D, forceToUp);
+            AudioManager.Instance.PlaySoundOnce(caller: this, sound: deathAudioSource);
+            rb.gravityScale = Transforms.Gravity.Hard;
+            jump.Execute(rb, forceToUp);
             (Getter.Component(this, gameObject, typeof(Collider2D)) as Collider2D).isTrigger = true;
 
-            ThisRigidbody2D.transform.localScale = new Vector3(Transforms.Scale.NormalPlus
+            rb.transform.localScale = new Vector3(Transforms.Scale.NormalPlus
             , Transforms.Scale.NormalPlus
             , Transforms.Scale.NormalPlus);
 
-            ThisSpriteRenderer.sortingOrder = (int)Layers.OrdersInDefaultLayer.Max;
+            spriteRenderer.sortingOrder = (int)Layers.OrdersInDefaultLayer.Max;
         }
 
         void Hit()
         {
-            if (!ThisAnimator.GetBool(AnimationParameters.Hit.ToString()))
+            if (!animator.GetBool(AnimationParameters.Hit.ToString()))
             {
                 Vector2 vectorHit = new Vector2();
                 float timeInWait = Times.Waits.Minimun;
 
-                ThisAnimator.SetBool(AnimationParameters.Hit.ToString(), true);
-                vectorHit.x = MathExt.GetInvertValue(LastDir) * HitForce;
+                animator.SetBool(AnimationParameters.Hit.ToString(), true);
+                vectorHit.x = MathExt.GetInvertValue(lastDir) * hitForce;
 
-                if (IsJumping)
+                if (isJumping)
                 {
                     vectorHit.x = MathExt.GetPercent(value: vectorHit.x, percent: 70);
-                    vectorHit.y = MathExt.GetPercent(value: HitForce, percent: 50);
+                    vectorHit.y = MathExt.GetPercent(value: hitForce, percent: 50);
                     timeInWait = Times.Waits.MinimunPlus;
                 }
-                ThisRigidbody2D.velocity = Vector2.zero;
-                ThisRigidbody2D.AddForce(vectorHit);
+                rb.velocity = Vector2.zero;
+                rb.AddForce(vectorHit);
                 StartCoroutine(EndHitAnimation(timeInWait));
             }
         }
@@ -235,8 +205,9 @@ namespace Popcorn.GameObjects.Persons
         IEnumerator EndHitAnimation(float waitTime)
         {
             yield return new WaitForSeconds(waitTime);
-            ThisAnimator.SetBool(AnimationParameters.Hit.ToString(), false);
+            animator.SetBool(AnimationParameters.Hit.ToString(), false);
         }
 
     }
+    
 }

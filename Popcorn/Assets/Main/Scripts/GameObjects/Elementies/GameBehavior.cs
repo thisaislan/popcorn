@@ -22,20 +22,18 @@ namespace Popcorn.GameObjects.Elementies
 
         public enum GameStates { Paused, Runing, TimeOut, Ended };
 
-        [SerializeField]
-        Times.ScenesTimes ScenesTime = Times.ScenesTimes.Normal;
-        [SerializeField]
-        Text TimeScreen;
+        [SerializeField] Times.ScenesTimes scenesTime = Times.ScenesTimes.Normal;
+        [SerializeField] Text timeScreen;
 
-        PlayerBase Player;
-        EndPoint EndPoint;
+        PlayerBase player;
+        EndPoint endPoint;
 
-        float Time;
-        float AlertTime = 30;
-        bool InAlertTime = false;
+        float time;
+        float alertTime = 30;
+        bool inAlertTime = false;
 
-        AudioSource TimeOutAudioSource;
-        AudioSource BackgroundMusic;
+        AudioSource timeOutAudioSource;
+        AudioSource backgroundMusic;
 
         [HideInInspector]
         public static GameStates GameState { get; protected set; }
@@ -46,14 +44,14 @@ namespace Popcorn.GameObjects.Elementies
             GetAndCheckElements();
             GetAudioSources();
 
-            Time = (float)ScenesTime;
+            time = (float)scenesTime;
             GameState = GameStates.Paused;
         }
 
         void GetAudioSources()
         {
-            TimeOutAudioSource = (AudioSource)Getter.ComponentInChild(this, gameObject, typeof(AudioSource), 0);
-            BackgroundMusic = (AudioSource)Getter.ComponentInChild(this, gameObject, typeof(AudioSource), 1);
+            timeOutAudioSource = (AudioSource)Getter.ComponentInChild(this, gameObject, typeof(AudioSource), 0);
+            backgroundMusic = (AudioSource)Getter.ComponentInChild(this, gameObject, typeof(AudioSource), 1);
         }
 
         void GetAndCheckElements()
@@ -63,15 +61,15 @@ namespace Popcorn.GameObjects.Elementies
                 errorOnNotFound: Errors.EndpointNotFound,
                 multiplesInstance: Errors.MultipleEndpointsFound);
 
-            EndPoint = (EndPoint)Getter.Component(this, endPointObject, typeof(EndPoint));
+            endPoint = (EndPoint)Getter.Component(this, endPointObject, typeof(EndPoint));
 
             Checker.SingleExistence(tag: ObjectsTags.StartPoint.ToString(),
                 errorIfNone: Errors.StartPointNotFound,
                 errorIfMultiple: Errors.MultipleStartPointsFound);
 
-            Checker.CruzedHorizontalPosition(leftGameObject: GameObject.FindGameObjectWithTag(ObjectsTags.StartPoint.ToString())
-                , rightGameObject: endPointObject
-                , error: Errors.StartAndEndpointCruzed);
+            Checker.CruzedHorizontalPosition(leftGameObject: GameObject.FindGameObjectWithTag(ObjectsTags.StartPoint.ToString()),
+                rightGameObject: endPointObject,
+                error: Errors.StartAndEndpointCruzed);
 
             Checker.SingleOrNoneExistence(tag: ElementiesTags.Destructor.ToString(),
                 errorIfMultiple: Errors.MultipleDestructorsFound);
@@ -84,10 +82,7 @@ namespace Popcorn.GameObjects.Elementies
                  errorIfNone: Errors.CameraNotFound,
                  errorIfMultiple: Errors.MultipleCamerasFound);
 
-            if (TimeScreen == null)
-            {
-                throw new UnityException(Errors.TimeNotSetInGameBehavior);
-            }
+            if (timeScreen == null) { throw new UnityException(Errors.TimeNotSetInGameBehavior); }
         }
 
         void GetPlayer()
@@ -97,12 +92,12 @@ namespace Popcorn.GameObjects.Elementies
                 errorOnNotFound: Errors.PlayerNotFound,
                 multiplesInstance: Errors.MultiplePlayersFound);
 
-            Player = (PlayerBase)Getter.Component(this, playerObject, typeof(PlayerBase));
+            player = (PlayerBase)Getter.Component(this, playerObject, typeof(PlayerBase));
         }
 
         void Start()
         {
-            AudioManager.Instance.PlayBackgroundMusic(caller: this, music: BackgroundMusic);
+            AudioManager.Instance.PlayBackgroundMusic(caller: this, music: backgroundMusic);
             GameState = GameStates.Runing;
         }
 
@@ -132,38 +127,26 @@ namespace Popcorn.GameObjects.Elementies
             }
         }
 
-        void CountingTime()
-        {
-            Time -= UnityEngine.Time.deltaTime;
-        }
+        void CountingTime() { time -= UnityEngine.Time.deltaTime; }
 
         void CheckTime()
         {
-            if (Time < 1)
-            {
-                GameState = GameStates.TimeOut;
-            }
-            else if (Time <= AlertTime && !InAlertTime)
-            {
-                StartAlertTime();
-            }
+            if (time < 1) { GameState = GameStates.TimeOut; }
+            else if (time <= alertTime && !inAlertTime) { StartAlertTime(); }
         }
 
         void StartAlertTime()
         {
-            InAlertTime = true;
-            TimeScreen.color = Color.red;
-            AudioManager.Instance.PlaySoundOnce(caller: this, sound: TimeOutAudioSource);
+            inAlertTime = true;
+            timeScreen.color = Color.red;
+            AudioManager.Instance.PlaySoundOnce(caller: this, sound: timeOutAudioSource);
         }
 
-        void SetTimeInScreen()
-        {
-            TimeScreen.text = ((int)Time).ToString();
-        }
+        void SetTimeInScreen() { timeScreen.text = ((int)time).ToString(); }
 
         bool IsGameFinished()
         {
-            if (!Player.IsAlive || EndPoint.WasReachedTheEnd)
+            if (!player.IsAlive || endPoint.WasReachedTheEnd)
             {
                 GameState = GameStates.Ended;
                 return true;
@@ -187,4 +170,5 @@ namespace Popcorn.GameObjects.Elementies
         }
 
     }
+
 }

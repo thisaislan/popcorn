@@ -7,28 +7,19 @@ namespace Popcorn.GameObjects.Helpers
     [RequireComponent(typeof(Collider2D))]
     public class WeakPoint : MonoBehaviour
     {
-        [HideInInspector]
-        public bool IsColliding { get; private set; }
-        private void Awake()
-        {
-            IsColliding = false;
-        }
+        [HideInInspector] public bool IsColliding { get; private set; }
+        void Awake() { IsColliding = false; }
 
         void OnCollisionEnter2D(Collision2D otherCollider2D)
         {
-            if (otherCollider2D.gameObject.CompareTag(Tags.Persons.Player.ToString()))
-            {
-                IsColliding = true;
-            }
+            if (otherCollider2D.gameObject.CompareTag(Tags.Persons.Player.ToString())) { IsColliding = true; }
         }
 
-        private void OnCollisionExit2D(Collision2D otherCollider2D)
+        void OnCollisionExit2D(Collision2D otherCollider2D)
         {
-            if (otherCollider2D.gameObject.CompareTag(Tags.Persons.Player.ToString()))
-            {
-                IsColliding = false;
-            }
+            if (otherCollider2D.gameObject.CompareTag(Tags.Persons.Player.ToString())) { IsColliding = false; }
         }
 
     }
+
 }

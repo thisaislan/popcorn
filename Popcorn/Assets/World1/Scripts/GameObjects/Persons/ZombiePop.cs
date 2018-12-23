@@ -17,48 +17,41 @@ namespace Popcorn.GameObjects.Persons
 
         enum AnimationParameters { WalkTrigger };
 
-        [SerializeField]
-        float Velocity = 1.2f;
-        [SerializeField]
-        bool IsWalking = false;
-        [SerializeField]
-        bool StartPostionToLeft = true;
-        [SerializeField]
-        float TimeToWalk = 1f;
+        [SerializeField] float velocity = 1.2f;
+        [SerializeField] bool isWalking = false;
+        [SerializeField] bool startPostionToLeft = true;
+        [SerializeField] float timeToWalk = 1f;
 
-        float Direction = Transforms.Direction.Right;
-        float WalkClock = 0;
+        float direction = Transforms.Direction.Right;
+        float walkClock = 0;
 
-        Move Move = new Move();
+        Move move = new Move();
 
-        AudioSource DeathAudioSource;
+        AudioSource deathAudioSource;
 
         override protected void Awake()
         {
             base.Awake();
-            DeathAudioSource = (AudioSource)Getter.ComponentInChild(this, gameObject, typeof(AudioSource), 0);
+            deathAudioSource = (AudioSource)Getter.ComponentInChild(this, gameObject, typeof(AudioSource), 0);
         }
 
         void Start()
         {
-            if (StartPostionToLeft)
+            if (startPostionToLeft)
             {
-                Direction = Transforms.Direction.Left;
+                direction = Transforms.Direction.Left;
             }
             else
             {
-                float scaleX = ThisRigidbody2D.transform.localScale.x;
+                float scaleX = rb.transform.localScale.x;
 
-                ThisRigidbody2D.transform.localScale = new Vector3(-scaleX,
+                rb.transform.localScale = new Vector3(-scaleX,
                     Transforms.Scale.Normal,
                     Transforms.Scale.Normal);
             }
         }
 
-        void FixedUpdate()
-        {
-            WalkClock += Time.deltaTime;
-        }
+        void FixedUpdate() { walkClock += Time.deltaTime; }
 
         protected override void Update()
         {
@@ -66,40 +59,29 @@ namespace Popcorn.GameObjects.Persons
 
             if (GameBehavior.GameState != GameStates.Runing || !IsAlive)
             {
-                if (ThisAnimator.speed != 0)
-                {
-                    ThisAnimator.speed = 0;
-                }
-                if (GameBehavior.GameState == GameStates.Runing)
-                {
-                    ThisRigidbody2D.transform.Rotate(Vector3.forward * 2 * Direction);
-                }
+                if (animator.speed != 0) { animator.speed = 0; }
+
+                if (GameBehavior.GameState == GameStates.Runing) { rb.transform.Rotate(Vector3.forward * 2 * direction); }
                 return;
             }
 
-            if (IsWalking)
-            {
-                Walk();
-            }
+            if (isWalking) { Walk(); }
         }
 
         void Walk()
         {
-            if (WalkClock >= TimeToWalk)
+            if (walkClock >= timeToWalk)
             {
-                Move.Execute(ThisRigidbody2D, Velocity * Direction);
-                ThisAnimator.SetTrigger(AnimationParameters.WalkTrigger.ToString());
+                move.Execute(rb, velocity * direction);
+                animator.SetTrigger(AnimationParameters.WalkTrigger.ToString());
                 CheckedIfNeedIversionOfPosition();
-                WalkClock = 0;
+                walkClock = 0;
             }
         }
 
-        private void CheckedIfNeedIversionOfPosition()
+        void CheckedIfNeedIversionOfPosition()
         {
-            if (HasHoleAhead() || HasObstacleAhead())
-            {
-                InvertionOfDirection();
-            }
+            if (HasHoleAhead() || HasObstacleAhead()) { InvertionOfDirection(); }
         }
 
         bool HasObstacleAhead()
@@ -107,55 +89,43 @@ namespace Popcorn.GameObjects.Persons
             Vector2 direction;
             Vector2 position = transform.position;
 
-            if (Direction == Transforms.Direction.Left)
-            {
-                direction = Vector2.left;
-            }
-            else
-            {
-                direction = Vector2.right;
-            }
+            if (this.direction == Transforms.Direction.Left) { direction = Vector2.left; }
+            else { direction = Vector2.right; }
 
-            position.x += Direction;
+            position.x += this.direction;
 
             RaycastHit2D hit = Physics2D.Raycast(position, direction, 0.08f);
 
-            if (hit.collider != null && hit.collider.tag != PersonsTags.Player.ToString())
-            {
-                return true;
-            }
+            if (hit.collider != null && hit.collider.tag != PersonsTags.Player.ToString()) { return true; }
             return false;
         }
 
         bool HasHoleAhead()
         {
             Vector2 position = transform.position;
-            position.x += Direction;
+            position.x += direction;
 
             RaycastHit2D hit = Physics2D.Raycast(position, Vector2.down, 1);
 
-            if (hit.collider == null)
-            {
-                return true;
-            }
+            if (hit.collider == null) { return true; }
             return false;
         }
 
         void InvertionOfDirection()
         {
 
-            if (Direction == Transforms.Direction.Right)
+            if (direction == Transforms.Direction.Right)
             {
-                Direction = Transforms.Direction.Left;
+                direction = Transforms.Direction.Left;
             }
             else
             {
-                Direction = Transforms.Direction.Right;
+                direction = Transforms.Direction.Right;
             }
 
-            float scaleX = ThisRigidbody2D.transform.localScale.x;
+            float scaleX = rb.transform.localScale.x;
 
-            ThisRigidbody2D.transform.localScale = new Vector3(-scaleX,
+            rb.transform.localScale = new Vector3(-scaleX,
                 Transforms.Scale.Normal,
                 Transforms.Scale.Normal);
         }
@@ -171,15 +141,16 @@ namespace Popcorn.GameObjects.Persons
 
         void KillAnimation()
         {
-            AudioManager.Instance.PlaySoundOnce(caller: this, sound: DeathAudioSource);
-            ThisAnimator.speed = 0;
-            ThisRigidbody2D.velocity = Vector2.zero;
+            AudioManager.Instance.PlaySoundOnce(caller: this, sound: deathAudioSource);
+            animator.speed = 0;
+            rb.velocity = Vector2.zero;
             (Getter.Component(this, gameObject, typeof(Collider2D)) as Collider2D).isTrigger = true;
             (Getter.ComponentInChild(this, gameObject, typeof(CircleCollider2D), 0) as CircleCollider2D).isTrigger = true;
-            ThisSpriteRenderer.sortingOrder = (int)Layers.OrdersInDefaultLayer.Max;
-            ThisRigidbody2D.AddForce(new Vector2(0, 100));
-            ThisRigidbody2D.gravityScale = Transforms.Gravity.Hard;
+            spriteRenderer.sortingOrder = (int)Layers.OrdersInDefaultLayer.Max;
+            rb.AddForce(new Vector2(0, 100));
+            rb.gravityScale = Transforms.Gravity.Hard;
         }
 
     }
+
 }

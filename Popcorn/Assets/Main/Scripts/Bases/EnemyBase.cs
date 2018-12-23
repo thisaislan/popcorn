@@ -15,7 +15,7 @@ namespace Popcorn.Bases
     public abstract class EnemyBase : PersonBase
     {
 
-        WeakPoint ThisWeakPoint;
+        WeakPoint weakPoint;
 
         protected override void Awake()
         {
@@ -34,21 +34,16 @@ namespace Popcorn.Bases
                 gameObject.tag);
         }
 
-        void GetWeakPoint()
-        {
-            ThisWeakPoint = (WeakPoint)Getter.ComponentInChild(this, gameObject, typeof(WeakPoint), 0);
-        }
+        void GetWeakPoint() { weakPoint = (WeakPoint)Getter.ComponentInChild(this, gameObject, typeof(WeakPoint), 0); }
 
         protected virtual void Update()
         {
-            
-            if (ThisWeakPoint.IsColliding && GameBehavior.GameState == GameStates.Runing)
-            {                
-                WeakPointHitted();
-            }
+
+            if (weakPoint.IsColliding && GameBehavior.GameState == GameStates.Runing) { WeakPointHitted(); }
         }
 
         protected abstract void WeakPointHitted();
 
     }
+
 }

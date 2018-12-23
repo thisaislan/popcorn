@@ -9,19 +9,13 @@ namespace Popcorn.GameObjects.Elementies
     public class LimitView : MonoBehaviour
     {
 
-        [SerializeField]
-        LimitSide LimitSide;
-        [SerializeField]
-        GameObject GameObjectRelativy;
-        [SerializeField]
-        float Distance = 7;
+        [SerializeField] LimitSide limitSide;
+        [SerializeField] GameObject gameObjectRelativy;
+        [SerializeField] float distance = 7;
 
         void Awake()
         {
-            if (IsConfigOk())
-            {
-                SetPosition();
-            }
+            if (IsConfigOk()) { SetPosition(); }
         }
 
         bool IsConfigOk()
@@ -30,28 +24,28 @@ namespace Popcorn.GameObjects.Elementies
 
             if (this.CompareTag(ElementiesTags.RightLimitView.ToString()))
             {
-                if (LimitSide != LimitSide.Right)
+                if (limitSide != LimitSide.Right)
                 {
                     error = Errors.AnyLimitViewWithTheWrongLimitSide;
                 }
             }
             else if (this.CompareTag(ElementiesTags.LeftLimitView.ToString()))
             {
-                if (LimitSide != LimitSide.Left)
+                if (limitSide != LimitSide.Left)
                 {
                     error = Errors.AnyLimitViewWithTheWrongLimitSide;
                 }
             }
             else if (this.CompareTag(ElementiesTags.UpLimitView.ToString()))
             {
-                if (LimitSide != LimitSide.Up)
+                if (limitSide != LimitSide.Up)
                 {
                     error = Errors.AnyLimitViewWithTheWrongLimitSide;
                 }
             }
             else if (this.CompareTag(ElementiesTags.BottomLimitView.ToString()))
             {
-                if (LimitSide != LimitSide.Bottom)
+                if (limitSide != LimitSide.Bottom)
                 {
                     error = Errors.AnyLimitViewWithTheWrongLimitSide;
                 }
@@ -73,27 +67,27 @@ namespace Popcorn.GameObjects.Elementies
 
         void SetPosition()
         {
-            if (GameObjectRelativy != null)
+            if (gameObjectRelativy != null)
             {
                 Vector3 pos = this.transform.position;
 
-                switch (LimitSide)
+                switch (limitSide)
                 {
                     case LimitSide.Left:
-                        pos.x = GameObjectRelativy.transform.position.x + Distance;
-                        pos.y = GameObjectRelativy.transform.position.y;
+                        pos.x = gameObjectRelativy.transform.position.x + distance;
+                        pos.y = gameObjectRelativy.transform.position.y;
                         break;
                     case LimitSide.Right:
-                        pos.x = GameObjectRelativy.transform.position.x - Distance;
-                        pos.y = GameObjectRelativy.transform.position.y;
+                        pos.x = gameObjectRelativy.transform.position.x - distance;
+                        pos.y = gameObjectRelativy.transform.position.y;
                         break;
                     case LimitSide.Up:
-                        pos.x = GameObjectRelativy.transform.position.x;
-                        pos.y = GameObjectRelativy.transform.position.y - Distance;
+                        pos.x = gameObjectRelativy.transform.position.x;
+                        pos.y = gameObjectRelativy.transform.position.y - distance;
                         break;
                     case LimitSide.Bottom:
-                        pos.x = GameObjectRelativy.transform.position.x;
-                        pos.y = GameObjectRelativy.transform.position.y + Distance;
+                        pos.x = gameObjectRelativy.transform.position.x;
+                        pos.y = gameObjectRelativy.transform.position.y + distance;
                         break;
                 }
                 this.transform.position = pos;
@@ -101,4 +95,5 @@ namespace Popcorn.GameObjects.Elementies
         }
 
     }
+
 }

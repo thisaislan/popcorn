@@ -11,11 +11,9 @@ namespace Popcorn.GameObjects.Objects
         {
             GameObject player = GameObject.FindGameObjectWithTag(PersonsTags.Player.ToString());
 
-            if (player != null)
-            {
-                player.transform.position = new Vector3(this.transform.position.x + 2f, this.transform.position.y, 0);
-            }
+            if (player != null) { player.transform.position = new Vector3(this.transform.position.x + 2f, this.transform.position.y, 0); }
         }
 
     }
+
 }

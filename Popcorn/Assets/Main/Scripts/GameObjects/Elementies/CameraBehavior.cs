@@ -11,16 +11,14 @@ namespace Popcorn.GameObjects.Elementies
     public class CameraBehavior : MonoBehaviour
     {
 
-        [SerializeField]
-        Vector2 Offset = new Vector2(0, 0);
-        [SerializeField]
-        Vector2 LerpAmount = new Vector2(0.05f, 0.05f);
+        [SerializeField] Vector2 offset = new Vector2(0, 0);
+        [SerializeField] Vector2 lerpAmount = new Vector2(0.05f, 0.05f);
 
-        Transform Target;
-        GameObject LeftLimitView;
-        GameObject RightLimitView;
-        GameObject UpLimitView;
-        GameObject BottomLimitView;
+        Transform target;
+        GameObject leftLimitView;
+        GameObject rightLimitView;
+        GameObject upLimitView;
+        GameObject bottomLimitView;
 
         void Awake()
         {
@@ -31,37 +29,35 @@ namespace Popcorn.GameObjects.Elementies
 
         void FindTarget()
         {
-            Target = Getter.ObjectWithTag(
-                caller: this,
+            target = Getter.ObjectWithTag(caller: this,
                 tag: PersonsTags.Player.ToString(),
                 errorOnNotFound: Errors.PlayerNotFound
                 ).transform;
 
             Vector3 pos = this.transform.position;
-            pos.x = Target.position.x + Offset.x + 3;
-            pos.y = Target.position.y + Offset.y;
+            pos.x = target.position.x + offset.x + 3;
+            pos.y = target.position.y + offset.y;
             this.transform.position = pos;
         }
 
         void FindLimites()
         {
-
-            LeftLimitView = Getter.SingleInstanceObjectWithTag(caller: this,
+            leftLimitView = Getter.SingleInstanceObjectWithTag(caller: this,
                 tag: ElementiesTags.LeftLimitView.ToString(),
                 errorOnNotFound: Errors.AnyLimitViewNotFound,
                 multiplesInstance: Errors.AnyLimitViewIsMultiplied);
 
-            RightLimitView = Getter.SingleInstanceObjectWithTag(caller: this,
+            rightLimitView = Getter.SingleInstanceObjectWithTag(caller: this,
                 tag: ElementiesTags.RightLimitView.ToString(),
                 errorOnNotFound: Errors.AnyLimitViewNotFound,
                 multiplesInstance: Errors.AnyLimitViewIsMultiplied);
 
-            UpLimitView = Getter.SingleInstanceObjectWithTag(caller: this,
+            upLimitView = Getter.SingleInstanceObjectWithTag(caller: this,
                 tag: ElementiesTags.UpLimitView.ToString(),
                 errorOnNotFound: Errors.AnyLimitViewNotFound,
                 multiplesInstance: Errors.AnyLimitViewIsMultiplied);
 
-            BottomLimitView = Getter.SingleInstanceObjectWithTag(caller: this,
+            bottomLimitView = Getter.SingleInstanceObjectWithTag(caller: this,
                 tag: ElementiesTags.BottomLimitView.ToString(),
                 errorOnNotFound: Errors.AnyLimitViewNotFound,
                 multiplesInstance: Errors.AnyLimitViewIsMultiplied);
@@ -69,54 +65,49 @@ namespace Popcorn.GameObjects.Elementies
 
         void CheckICrossLimits()
         {
-            Checker.CruzedHorizontalPosition(leftGameObject: LeftLimitView, rightGameObject: RightLimitView, error: Errors.CruzedHorizontalLimits);
-            Checker.CruzedVerticalPosition(upGameObject: UpLimitView, bottomGameObject: BottomLimitView, error: Errors.CruzedVerticalLimits);
+            Checker.CruzedHorizontalPosition(leftGameObject: leftLimitView, rightGameObject: rightLimitView, error: Errors.CruzedHorizontalLimits);
+            Checker.CruzedVerticalPosition(upGameObject: upLimitView, bottomGameObject: bottomLimitView, error: Errors.CruzedVerticalLimits);
         }
 
         void Update()
         {
-            if (Target == null)
-            {
-                return;
-            }
-            else
-            {
-                Follow();
-            }
+            if (target == null) { return; }
+            else { Follow(); }
         }
 
         void Follow()
         {
             Vector3 thisPosition = this.transform.position;
 
-            if (Target.position.x <= LeftLimitView.transform.position.x)
+            if (target.position.x <= leftLimitView.transform.position.x)
             {
-                thisPosition.x = Mathf.Lerp(thisPosition.x, LeftLimitView.transform.position.x + Offset.x, LerpAmount.x);
+                thisPosition.x = Mathf.Lerp(thisPosition.x, leftLimitView.transform.position.x + offset.x, lerpAmount.x);
             }
-            else if (Target.position.x >= RightLimitView.transform.position.x)
+            else if (target.position.x >= rightLimitView.transform.position.x)
             {
-                thisPosition.x = Mathf.Lerp(thisPosition.x, RightLimitView.transform.position.x + Offset.x, LerpAmount.x);
+                thisPosition.x = Mathf.Lerp(thisPosition.x, rightLimitView.transform.position.x + offset.x, lerpAmount.x);
             }
             else
             {
-                thisPosition.x = Mathf.Lerp(thisPosition.x, Target.position.x + Offset.x, LerpAmount.x);
+                thisPosition.x = Mathf.Lerp(thisPosition.x, target.position.x + offset.x, lerpAmount.x);
             }
 
-            if (Target.position.y <= BottomLimitView.transform.position.y)
+            if (target.position.y <= bottomLimitView.transform.position.y)
             {
-                thisPosition.y = Mathf.Lerp(thisPosition.y, BottomLimitView.transform.position.y + Offset.y, LerpAmount.y);
+                thisPosition.y = Mathf.Lerp(thisPosition.y, bottomLimitView.transform.position.y + offset.y, lerpAmount.y);
             }
-            else if (Target.position.y >= UpLimitView.transform.position.y)
+            else if (target.position.y >= upLimitView.transform.position.y)
             {
-                thisPosition.y = Mathf.Lerp(thisPosition.y, UpLimitView.transform.position.y + Offset.y, LerpAmount.y);
+                thisPosition.y = Mathf.Lerp(thisPosition.y, upLimitView.transform.position.y + offset.y, lerpAmount.y);
             }
             else
             {
-                thisPosition.y = Mathf.Lerp(thisPosition.y, Target.position.y + Offset.y, LerpAmount.y);
+                thisPosition.y = Mathf.Lerp(thisPosition.y, target.position.y + offset.y, lerpAmount.y);
             }
 
             this.transform.position = thisPosition;
         }
 
     }
+
 }

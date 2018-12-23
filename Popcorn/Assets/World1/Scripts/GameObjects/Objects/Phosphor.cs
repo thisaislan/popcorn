@@ -12,8 +12,8 @@ namespace Popcorn.GameObjects.Objects
 
         enum AnimationParameters { IsPlayerNear };
 
-        Animator Animator;
-        ParticleSystem ParticleSys;
+        Animator animator;
+        ParticleSystem particleSys;
 
         protected override void Awake()
         {
@@ -23,21 +23,22 @@ namespace Popcorn.GameObjects.Objects
 
         void GetComponents()
         {
-            Animator = (Animator)Getter.Component(this, gameObject, typeof(Animator));
-            ParticleSys = (ParticleSystem)Getter.Component(this, gameObject, typeof(ParticleSystem));
+            animator = (Animator)Getter.Component(this, gameObject, typeof(Animator));
+            particleSys = (ParticleSystem)Getter.Component(this, gameObject, typeof(ParticleSystem));
         }
 
         protected override void StartRun()
         {
-            Animator.SetBool(AnimationParameters.IsPlayerNear.ToString(), true);
-            ParticleSys.Play();
+            animator.SetBool(AnimationParameters.IsPlayerNear.ToString(), true);
+            particleSys.Play();
         }
 
         protected override void StopRun()
         {
-            Animator.SetBool(AnimationParameters.IsPlayerNear.ToString(), false);
-            ParticleSys.Stop();
+            animator.SetBool(AnimationParameters.IsPlayerNear.ToString(), false);
+            particleSys.Stop();
         }
 
     }
+    
 }

@@ -11,10 +11,7 @@ namespace Popcorn.Bases
     public abstract class RunByTriggerBase : MonoBehaviour
     {
 
-        protected virtual void Awake()
-        {
-            CheckTrigger();
-        }
+        protected virtual void Awake() { CheckTrigger(); }
 
         void CheckTrigger()
         {
@@ -22,10 +19,7 @@ namespace Popcorn.Bases
 
             foreach (var component in components)
             {
-                if ((component as Collider2D).isTrigger)
-                {
-                    return;
-                }
+                if ((component as Collider2D).isTrigger) { return; }
             }
 
             throw new UnityException(Errors.TriggerNotFoundInRunWhenPlayerIsNear +
@@ -39,24 +33,19 @@ namespace Popcorn.Bases
 
         protected virtual void OnTriggerEnter2D(Collider2D otherCollider2D)
         {
-            if (otherCollider2D.CompareTag(PersonsTags.Player.ToString()))
-            {
-                StartRun();
-            }
+            if (otherCollider2D.CompareTag(PersonsTags.Player.ToString())) { StartRun(); }
         }
 
         protected abstract void StartRun();
 
         protected virtual void OnTriggerExit2D(Collider2D otherCollider2D)
         {
-            if (otherCollider2D.CompareTag(PersonsTags.Player.ToString()))
-            {
-                StopRun();
-            }
+            if (otherCollider2D.CompareTag(PersonsTags.Player.ToString())) { StopRun(); }
 
         }
 
         protected abstract void StopRun();
 
     }
+
 }

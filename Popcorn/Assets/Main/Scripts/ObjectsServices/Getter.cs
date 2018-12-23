@@ -32,7 +32,7 @@ namespace Popcorn.ObjectsServices
                 tag);
         }
 
-        private static GameObject objectWithTag(string tag, string errorOnNotFound)
+        static GameObject objectWithTag(string tag, string errorOnNotFound)
         {
             GameObject gameObject = GameObject.FindGameObjectWithTag(tag);
 
@@ -148,4 +148,5 @@ namespace Popcorn.ObjectsServices
         }
 
     }
+
 }

@@ -8,25 +8,19 @@ namespace Popcorn.Canvas.Components
     public class Shadow : MonoBehaviour
     {
 
-        [SerializeField]
-        Text Target;
-        [SerializeField]
-        float ShadowInX;
-        [SerializeField]
-        float ShadowInY;
+        [SerializeField] Text target;
+        [SerializeField] float shadowInX;
+        [SerializeField] float shadowInY;
 
         void Awake()
         {
             Vector3 behindPos = transform.position;
 
-            behindPos = new Vector3(Target.transform.position.x + ShadowInX, Target.transform.position.y + ShadowInY, Target.transform.position.z - 1);
+            behindPos = new Vector3(target.transform.position.x + shadowInX, target.transform.position.y + shadowInY, target.transform.position.z - 1);
             transform.position = behindPos;
         }
 
-        void Update()
-        {
-            ((Text)Getter.Component(this, gameObject, typeof(Text))).text = Target.text;
-        }
+        void Update() { ((Text)Getter.Component(this, gameObject, typeof(Text))).text = target.text; }
 
-    }
+    }    
 }

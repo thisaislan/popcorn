@@ -6,7 +6,8 @@ namespace Popcorn.Core
     public static class App
     {
 
-        public static ScenesNames CurrentSceneName;
-        
+        public static ScenesNames currentSceneName;
+
     }
+
 }
