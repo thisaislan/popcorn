@@ -1,0 +1,5 @@
+This project aims to create an easy environment for those who just want to create new levels without the need for programming, just by dragging and jumping elements to the scene.
+The many existing validations ensure easy identification of possible structural problems during phase composition.
+However, such validations increase the latency of the project, and allied to the organization and chosen pattern also increase the complexity of the same.  Being perhaps not indicated in a project aimed at launching in its final product.
+
+In addition, enjoy the project!
