@@ -9,5 +9,4 @@ Help this little guy in his immense journey!
 
 I hope you like.
 
-:link: Game Online: https://popcorn-game.herokuapp.com/<br/>
 :email: Email: this.aislan@gmail.com
